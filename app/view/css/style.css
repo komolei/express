@@ -1,0 +1,39 @@
+/*reset css*/
+/*返回顶部代码*/
+.izl-rmenu {position:fixed; right:0; bottom:100px;padding-bottom:73px;background:url(../images/r_b.png) 0px bottom no-repeat;z-index:999;}
+.izl-rmenu .btn{width: 50px;height: 50px;margin-bottom:1px;cursor:pointer;position:relative;}
+.izl-rmenu .btn-qq{background: url(../images/r_qq.png) -11px -8px no-repeat;background-color:#D9251D;}
+.izl-rmenu .btn-qq .qq { position: absolute;
+    left: -200px;
+    top: 0px;
+    display: none;
+    width: 200px;
+    /* height: 160px; */
+	background:url(../images/qq.fw.png) no-repeat;
+	height:255px;
+	padding:45px 0 0 15px;}
+	
+.izl-rmenu .btn-qq .qq p a{ display:block; background:url(../images/qq1.fw.png); height:35px; width:90px; padding-left:68px; font-family:"微软雅黑"; font-size:14px; color:#444; line-height:35px; margin-bottom:5px;}
+.izl-rmenu .btn-qq .qq p a:hover{background:url(../images/qq2.fw.png); color:#fff;}
+
+.izl-rmenu .btn-buy{background:url(../images/r_qq.png) 0px 0px no-repeat;background-color:#6da9de;}
+.izl-rmenu .btn-buy:hover{background-color:#488bc7;}
+.izl-rmenu .btn-buy,.izl-rmenu .btn-buy:visited{background:url(../images/r_buy.png) 0px 0px no-repeat;background-color:#6da9de;text-decoration:none;display:block;}
+.izl-rmenu .btn-wx{background: url(../images/r_wx.png) -11px -10px no-repeat;background-color:#D9251D;}
+.izl-rmenu .btn-wx:hover{background-color:#c52b24;}
+.izl-rmenu .btn-wx .pic{    position: absolute;
+    left: -200px;
+    top: -149px;
+    display: none;
+    width: 200px;
+    /* height: 160px; */}
+.izl-rmenu .btn-phone{background: url(../images/r_phone.png) -9px -9px no-repeat;background-color:#D9251D;}
+.izl-rmenu .btn-phone:hover{background-color:#c52b24;}
+.izl-rmenu .btn-phone .phone{position: absolute;
+   
+    left: -200px;
+    top: -122px;
+   
+    color: #FFF;font-size:18px;text-align:center;display:none;}
+.izl-rmenu .btn-top{background: url(../images/r_top.png) -12px -9px no-repeat;background-color:#D9251D;display:none;}
+.izl-rmenu .btn-top:hover{background-color:#c52b24;}
