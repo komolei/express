@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>index.html</title>
+
+  <!-- Bootstrap -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/index.css" rel="stylesheet">
+
+  <!-- <link rel="stylesheet" href="/css/index.css"> -->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          <!-- <img class="" src="/images/logo.jpg" alt="logo icon" width="20px"> -->
+          <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/html/index.html">index <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+
+        </ul>
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li id="signInDialog"><a href="JavaScript:void(0)">SignIn</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <!-- dialog signInDialog -->
+  <div class="container signInDialog center-block">
+
+    <div class="form-signin">
+      <h2 class="form-signin-heading text-center">Please sign in</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputName" class="sr-only">Password</label>
+      <input type="username" id="inputName" class="form-control" placeholder="Username" required>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <div class="checkbox">
+        <label>
+                <input type="checkbox" value="remember-me" /> Remember me
+        </label>
+      </div>
+      <span id="changeSignUp" class="text-primary">Sign Up</span>
+      <button id="signInBtn" class="btn btn-lg btn-primary btn-block " type="submit">Sign in</button>
+    </div>
+
+  </div>
+  <!-- dialog signUpDialog -->
+  <div id="signUpDialog" class="container signUpDialog center-block">
+
+    <div class="form-signUp">
+      <h2 class="form-signUp-heading text-center ">Please Sign Up</h2>
+      <label for="inputEmail" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail1" class="form-control" placeholder="Email address" required autofocus>
+      <label for="inputName" class="sr-only">Password</label>
+      <input type="username" id="inputName1" class="form-control" placeholder="Username" required>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
+      <label for="inputSurePassword" class="sr-only">Password</label>
+      <input type="password" id="inputSurePassword1" class="form-control" placeholder="surePassword" required>
+      <button id="signUpBtn" class="btn btn-lg btn-primary btn-block " type="submit">Sign Up</button>
+    </div>
+
+  </div>
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

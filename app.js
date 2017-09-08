@@ -11,7 +11,8 @@ app.get('/', (req, res) => {
     // res.send('hello my first express application');
     // now send .html
     // res.send(index.html);//error 
-    res.sendFile(process.cwd() + '/app/view/html/index.html');
+    // res.sendFile(process.cwd() + '/app/view/html/index.html');
+    res.sendFile(process.cwd() + '/app/view/html/bootstrap.html');
 
 })
 // static resource
@@ -82,6 +83,7 @@ let mongodbConnection = () => {
 let SignUpInfo = (data) => {
     let UserSignUp = require('./SignUp.js');
     return new UserSignUp({
+        email: data.email,
         username: data.username,
         password: data.password,
         surePassword: data.surePassword,
@@ -99,7 +101,7 @@ let bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
     extended: true,
 }))
-app.post('/signup', (req, res) => {
+app.post('/signUp', (req, res) => {
     // console.log("req:", req.query);//get form data 
     // let data = req.query;
     // console.log("req.query", req.query);
@@ -114,14 +116,15 @@ app.post('/signup', (req, res) => {
         // console.log(res, "connection open", user);
         user.save((err, doc) => {
             if (err) console.log(err);
-            res.redirect('/next')
+            // res.redirect('/next')
+            res.json({username:user.username})
             console.log("save success", doc);
         })
     })
 })
 
 // to bind model 
-app.post('/login', (req, res) => {
+app.post('/signIn', (req, res) => {
     // invoke function to find userInfo is true
     let db = mongodbConnection();
     db.on('error', console.error.bind(console, 'connection error'));
@@ -134,17 +137,17 @@ app.post('/login', (req, res) => {
         //     if (err) return console.error(err);
         //     console.log("this is docs", docs);
         // })
-        console.log("request info:",userInfo);
+        console.log("request info:", userInfo);
         user.find({ username: userInfo.username }, (err, docs) => {
             if (err) return console.error(err);
-            console.log("this is docs", docs,docs.length);
+            console.log("this is docs", docs, docs.length);
             if (!docs.length) return console.error("user name is't right");
         }).find({ password: userInfo.password }, (err, docs) => {
             if (err) return console.error(err);
             console.log(docs);
             if (!docs.length) return console.error("user password is't right");
             // res.send("login success "+userInfo.username);
-            res.json({username:userInfo.username})
+            res.json({ username: userInfo.username })
         })
         // query password
         // user.find({ password: userInfo.password }, (err, docs) => {
