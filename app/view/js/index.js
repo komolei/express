@@ -49,14 +49,20 @@ changeSignUp.addEventListener('click', () => {
 let signUpBtn = document.getElementById('signUpBtn');
 signUpBtn.addEventListener('click', () => {
     let email = document.getElementById('inputEmail1').value;
+    // regex 
+    let one, two, three;
+
     let username = document.getElementById('inputName1').value;
     let password = document.getElementById('inputPassword1').value;
     let surePassword = document.getElementById('inputSurePassword1').value;
     // document.getElementById('inputEmail1').value;
     // document.getElementById('inputName1').value;
+    /\w{3,10}@?\w{2,}[.]\w{2,4}/.test(email) ? one = true : console.log("email format error");
+    /\w{6,}/.test(username) ? two = true : console.log("username error");
+    /\S{6,12}/.test(password) ? three = true : console.log("password error");
     document.getElementById('inputPassword1').value = '';
     document.getElementById('inputSurePassword1').value = '';
-    if (password === surePassword) {
+    if (one && two && three && password === surePassword) {
         let xhr = new XMLHttpRequest(),
             method = 'POST',
             url = '/signUp';
@@ -76,6 +82,7 @@ signUpBtn.addEventListener('click', () => {
             else {
                 //document.getElementById('loginDiv').innerHTML = "<p>sorry can't find user</p>"
                 //alert('sorry! Can"t find user');
+                console.log("the password is not same");
                 return isLockUp = false;
             }
         }
