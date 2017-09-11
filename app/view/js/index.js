@@ -192,6 +192,7 @@ let arrayImgLoad = (wrappedElements, wrappedElementArea) => {
         img.src = imgLoadSrc;
         let load = () => {
             if (img.complete) {
+                img.classList.add('center-block');
                 wrappedElement.replaceChild(img, WrappedImg);
                 clearInterval(clearTime);
             }
@@ -218,69 +219,69 @@ arrayImgLoad(
 
 
 // monitor img loading situation //监视img加载情况
-// let imgLoad = () => {
-//     // let img_arr = ['/images/1.jpg', '/images/2.jpg', '/images/3.jpg'];
-//     let imgArray = document.querySelectorAll("img")
-//     let imgSrcArray = [];
-//     Array.prototype.slice.call(imgArray).map((Element, index) => {
-//         // let imgSrcArray=[];
-//         imgSrcArray.push(Element.getAttribute('data-src'));
-//         //duplication array //数组去重
-//         // click for more information 
-//         //https://www.toobug.net/article/array_unique_in_javascript.html
-//         // imgSrcArray = new Set(imgSrcArray)
-//         // console.log("set ",set);
-//         return imgSrcArray;
-//     })
-//     // console.log("imgArray:", imgArray, "imgSrcArray", imgSrcArray); 
-//     // need change set type to array type ,use Array.from();
-//     imgSrcArray = Array.from(new Set(imgSrcArray));
-//     console.log("imgArray:", imgArray, "imgSrcArray", imgSrcArray);
+let imgLoad = () => {
+    // let img_arr = ['/images/1.jpg', '/images/2.jpg', '/images/3.jpg'];
+    let imgArray = document.querySelectorAll("img")
+    let imgSrcArray = [];
+    Array.prototype.slice.call(imgArray).map((Element, index) => {
+        // let imgSrcArray=[];
+        imgSrcArray.push(Element.getAttribute('data-src'));
+        //duplication array //数组去重
+        // click for more information 
+        //https://www.toobug.net/article/array_unique_in_javascript.html
+        // imgSrcArray = new Set(imgSrcArray)
+        // console.log("set ",set);
+        return imgSrcArray;
+    })
+    // console.log("imgArray:", imgArray, "imgSrcArray", imgSrcArray); 
+    // need change set type to array type ,use Array.from();
+    imgSrcArray = Array.from(new Set(imgSrcArray));
+    console.log("imgArray:", imgArray, "imgSrcArray", imgSrcArray);
 
-//     if (imgSrcArray.length != 0) {
-//         let img_arr = imgSrcArray;
-//         // console.log("img_arr:", img_arr);
-//         let nums = img_arr.length;
-//         let start = 0;
-//         for (let i in img_arr) {
-//             let img = document.createElement('img');
-//             img.src = img_arr[i];
-//             (function (j) {
-//                 img.onload = function () {
-//                     start++;
-//                     if (start == nums) {
-//                         console.log('全部加载完成');
-//                     }
-//                     // document.getElementById('loading').style.width = (start / nums) * 100 + '%';
-//                     // combine bootstrap
-//                     let targetNode = document.getElementById('progressBar');
-//                     // let longShow = (start / nums) * 100 +'%';
-//                     let longShow = Math.floor((start / nums) * 100) + '%';
-//                     console.log("longShow", longShow);
-//                     targetNode.style.width = longShow;
-//                     targetNode.innerText = longShow;
-//                 };
-//                 img.onerror = function () {
-//                     start;
-//                     console.log(start, j, img_arr[j] + '失败');
-//                     // document.getElementById('loading').style.width = (start / nums) * 100 + '%';
-//                     // combine bootstrap
-//                     // document.getElementById('progressBar').style.width = (start / nums) * 100 + '%';
-//                     let targetNode = document.getElementById('progressBar');
-//                     // let longShow = (start / nums) * 100 + '%';
-//                     // longShow = Math.floor(longShow)
-//                     let longShow = Math.floor((start / nums) * 100) + '%';
-//                     targetNode.style.width = longShow;
-//                     targetNode.innerText = longShow;
-//                 }
-//             })(i);
-//         }
+    if (imgSrcArray.length != 0) {
+        let img_arr = imgSrcArray;
+        // console.log("img_arr:", img_arr);
+        let nums = img_arr.length;
+        let start = 0;
+        for (let i in img_arr) {
+            let img = document.createElement('img');
+            img.src = img_arr[i];
+            (function (j) {
+                img.onload = function () {
+                    start++;
+                    if (start == nums) {
+                        console.log('全部加载完成');
+                    }
+                    // document.getElementById('loading').style.width = (start / nums) * 100 + '%';
+                    // combine bootstrap
+                    let targetNode = document.getElementById('progressBar');
+                    // let longShow = (start / nums) * 100 +'%';
+                    let longShow = Math.floor((start / nums) * 100) + '%';
+                    console.log("longShow", longShow);
+                    targetNode.style.width = longShow;
+                    targetNode.innerText = longShow;
+                };
+                img.onerror = function () {
+                    start;
+                    console.log(start, j, img_arr[j] + '失败');
+                    // document.getElementById('loading').style.width = (start / nums) * 100 + '%';
+                    // combine bootstrap
+                    // document.getElementById('progressBar').style.width = (start / nums) * 100 + '%';
+                    let targetNode = document.getElementById('progressBar');
+                    // let longShow = (start / nums) * 100 + '%';
+                    // longShow = Math.floor(longShow)
+                    let longShow = Math.floor((start / nums) * 100) + '%';
+                    targetNode.style.width = longShow;
+                    targetNode.innerText = longShow;
+                }
+            })(i);
+        }
 
-//     }
+    }
 
-// }
+}
 
-// imgLoad();
+imgLoad();
 
 // --------------------------------------------
 
@@ -395,6 +396,41 @@ arrayImgLoad(
 window.onload = () => {
     let wrappedBox = document.getElementsByClassName('wrappedBox')[0];
     let indexLoad = document.getElementById('indexLoad');
-    indexLoad.classList.add('hide');
+    let progress=document.getElementsByClassName('progress')[0];
+    // indexLoad.classList.add('hide');
+    indexLoad.style.display = 'none';
     wrappedBox.classList.remove('hide');
+    progress.classList.add('hide');
 }
+
+// lazy load function
+let lazyLoad = () => {
+    function show($node) {
+        var url = $node.attr('data-src');
+        $node.attr('src', url);
+        $node.addClass('showMe');
+    }
+    function isVisible($node) {
+        var windowH = $(window).height();
+        var st = $(window).scrollTop();
+        var ot = $node.offset().top;
+        var nodeH = $node.outerHeight();
+        if (ot < windowH + st && st < ot + nodeH) {
+            return true;
+            // show($(this));
+        }
+        else {
+            return false;
+        }
+    }
+    check();
+    function check() {
+        $('img').not('showMe').each(function () {
+            if (isVisible($(this))) {
+                show($(this));
+            }
+        })
+    }
+    $(window).on('scroll', check)
+}
+lazyLoad();
