@@ -394,13 +394,15 @@ imgLoad();
 // --------------------------------------------
 // don't forget this api  
 window.onload = () => {
+    let firstLoad = document.getElementsByClassName('firstLoad')[0];
     let wrappedBox = document.getElementsByClassName('wrappedBox')[0];
     let indexLoad = document.getElementById('indexLoad');
-    let progress=document.getElementsByClassName('progress')[0];
-    // indexLoad.classList.add('hide');
-    indexLoad.style.display = 'none';
+    let progress = document.getElementsByClassName('progress')[0];
+    // indexLoad.classList.add('hide'); 
+    // progress.classList.add('hide');
+    // indexLoad.style.display = 'none';
     wrappedBox.classList.remove('hide');
-    progress.classList.add('hide');
+    firstLoad.classList.add('hide');
 }
 
 // lazy load function
@@ -434,3 +436,47 @@ let lazyLoad = () => {
     $(window).on('scroll', check)
 }
 lazyLoad();
+
+//monitor node show situation
+
+
+let nodeLazyLoad = () => {
+    function show($node) {
+        // var url = $node.attr('data-src');
+        // $node.attr('src', url);
+        // $node.removeClass('nodeHide');
+        // $node.
+        // $node.addClass('nodeShow');
+        $node.removeClass('nodeHide');
+        $node.addClass('animated fadeIn')
+    }
+    function isVisible($node) {
+        var windowH = $(window).height();
+        var st = $(window).scrollTop();
+        var ot = $node.offset().top;
+        var nodeH = $node.outerHeight();
+        if (ot < windowH + st && st < ot + nodeH) {
+            return true;
+            // show($(this));
+        }
+        else {
+            return false;
+        }
+    }
+    check();
+    function check() {
+        // console.log("fuck:", $('div#node').not('nodeshow').length,document.querySelectorAll('#node').length);
+        // let node=document.querySelectorAll('#node');
+
+        // pit is jquery==>ID:selector should be used by this way $('div#node'),
+        // if use this way like $('#node'),just select one result
+        $('div#node').each(function () {
+            console.log("this:", this);
+            if (isVisible($(this))) {
+                show($(this));
+            }
+        })
+    }
+    $(window).on('scroll', check)
+}
+nodeLazyLoad();

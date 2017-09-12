@@ -210,7 +210,7 @@ body {
 .loading {
     position: fixed;
     /* top:30px; */
-    z-index:22;
+    z-index: 22;
     width: 200px;
     height: 30px;
     border: 1px solid #ccc;
@@ -225,4 +225,44 @@ body {
     height: 30px;
     background: rgba(163, 211, 74, 0.41);
     transition: all 1s;
+}
+
+.newLadder {
+    /* background: url(/images/1.jpg); */
+    background-size: cover;
+}
+
+
+/* first document loading */
+
+.firstLoad {
+    position: fixed;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    background: #fff;
+}
+
+.firstLoadBox {
+    position: relative;
+    top: 20%;
+}
+
+
+/* node lazyLoad  */
+
+
+/* #node{
+    display: none;
+} */
+
+.nodeHide {
+    /* display: none; */
+    opacity: 0;
+    /* visibility: hidden; */
+}
+
+.nodeShow {
+    display: block;
+    /* visibility: visible; */
 }

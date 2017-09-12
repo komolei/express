@@ -10,6 +10,7 @@
 
   <!-- Bootstrap -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/animate.min.css" rel="stylesheet">
   <link href="/css/index.css" rel="stylesheet">
   <!-- <link rel="stylesheet" data-href="http://cdn2.jianshu.io/assets/web-a272073c5fdb4e0f1abb.css"> -->
   <!-- <link rel="stylesheet" href="/css/index.css"> -->
@@ -24,13 +25,15 @@
 
 <body>
   <div class="firstLoad">
-    <div id='indexLoad' class="text-center">
-      <img src="/images/load2.gif" data-src="/images/load2.gif" alt="loadIng">
-    </div>
-    <div class="progress">
-      <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-        aria-valuemax="100" style="width: 0%;">
-        0%
+    <div class="firstLoadBox">
+      <div id='indexLoad' class="text-center">
+        <img src="/images/load2.gif" data-src="/images/load2.gif" alt="loadIng">
+      </div>
+      <div class="progress">
+        <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+          aria-valuemax="100" style="width: 0%;">
+          0%
+        </div>
       </div>
     </div>
   </div>
@@ -204,7 +207,7 @@
 
 
     <!-- img load -->
-    <div>
+    <!-- <div>
       <div id="imgBox" class="thumbnail">
         <img id="imgLoad" src="/images/load2.gif" data-src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="wait Loading">
       </div>
@@ -213,21 +216,6 @@
           alt="wait Loading">
       </div>
 
-      <!-- <div id="imgBox" class="thumbnail">
-            <img id="imgLoad" src="/images/load.gif" data-src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="wait Loading">
-          </div>
-          <div id="imgBox" class="thumbnail">
-            <img id="imgLoad" src="/images/load.gif" data-src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="wait Loading">
-          </div>
-          <div id="imgBox" class="thumbnail">
-            <img id="imgLoad" src="/images/load.gif" data-src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="wait Loading">
-          </div>
-          <div id="imgBox" class="thumbnail">
-            <img id="imgLoad" src="/images/load.gif" data-src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="wait Loading">
-          </div>
-          <div id="imgBox" class="thumbnail">
-            <img id="imgLoad" src="/images/load.gif" data-src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="wait Loading">
-          </div> -->
     </div>
     <div class="container">
       <ul>
@@ -281,7 +269,83 @@
                         alt=""></a>
         </li>
       </ul>
+    </div> -->
+    <!-- jumbotron -->
+    <br/>
+    <div id="node" class="jumbotron newLadder ">
+      <div class="container">
+        <div class="row">
+          <h2>Give you a ladder to see the bigger world</h2>
+          <p>Enjoy your freedom time</p>
+          <button class="btn btn-danger">Open door</button>
+        </div>
+      </div>
     </div>
+
+
+    <div id="node" class="container-fluid nodeHide">
+      <div class="row">
+        <div class="col-xs-6 ">
+          <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+        </div>
+        <div class="col-xs-6">
+          <h4 class="animated fadeInRightBig">
+            Sometime,We will think what?
+          </h4>
+          <p class="animated fadeInRightBig">
+            What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+          </p>
+          <p class="animated fadeInRightBig">
+            <span class="glyphicon glyphicon-ok"></span>
+            <span>try best to learn by yourself</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+    <div id="node" class="container-fluid nodeHide">
+      <div class="row">
+        <div class="col-xs-6">
+          <h4 class="animated fadeInRightBig">
+            Sometime,We will think what?
+          </h4>
+          <p class="animated fadeInRightBig">
+            What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+          </p>
+          <p class="animated fadeInRightBig">
+            <span class="glyphicon glyphicon-ok"></span>
+            <span>try best to learn by yourself</span>
+          </p>
+        </div>
+        <div class="col-xs-6 ">
+          <img class="animated bounceInLeft" src="/images/load.gif" data-src="/images/2.jpg" alt="2.jpg">
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div id="node" class="container-fluid nodeHide">
+      <div class="row">
+        <div class="col-xs-6 ">
+          <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+        </div>
+        <div class="col-xs-6">
+          <h4 class="animated fadeInRightBig">
+            Sometime,We will think what?
+          </h4>
+          <p class="animated fadeInRightBig">
+            What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+          </p>
+          <p class="animated fadeInRightBig">
+            <span class="glyphicon glyphicon-ok"></span>
+            <span>try best to learn by yourself</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- 分页 -->
     <nav aria-label="Page navigation" class="text-center">
       <ul class="pagination">
