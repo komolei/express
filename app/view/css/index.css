@@ -23,9 +23,9 @@ input {
 } */
 
 body {
-    position: relative;
+    position: relative ;
 }
-
+/* 
 .signInDialog {
     display: none;
     position: absolute;
@@ -52,7 +52,7 @@ body {
 
 .changeSignUpDialog {
     display: block;
-}
+} */
 
 
 /* #changeSignUp:hover>.signUpDialog {
@@ -229,7 +229,8 @@ body {
 
 .newLadder {
     /* background: url(/images/1.jpg); */
-    background-size: cover;
+    /* background-size: cover; */
+    background: #fff;
 }
 
 

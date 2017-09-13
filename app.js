@@ -121,6 +121,8 @@ app.post('/signUp', (req, res) => {
             console.log("save success", doc);
         })
     })
+    // close mongoDB
+    // db.close();
 })
 
 // to bind model 
@@ -162,10 +164,20 @@ app.post('/signIn', (req, res) => {
         //     console.log("this docs is:", docs);
         // })
     })
+    // db.close();
+    
 })
-
+app.get('/signOut',(req,res)=>{
+    console.log(req.query,"nothing");
+    // res.redirect('/next');
+    res.sendFile(process.cwd() + '/app/view/html/bootstrap.html');
+    // res.send('fuck')
+    
+})
 app.use('/next', (req, res) => {
     res.send('signUp success');
+    // res.sendFile(process.cwd() + '/app/view/html/bootstrap.html');
+    
 })
 let server = app.listen(3000, () => {
     let host = server.address().address;

@@ -70,8 +70,9 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li id="signInDialog"><a href="JavaScript:void(0)">SignIn</a></li>
-            <li class="dropdown disabled">
+            <li id="signInDialog" data-toggle="modal" data-target="#signIn"><a href="JavaScript:void(0)">SignIn</a></li>
+            <!-- <li class="dropdown disabled"> -->
+            <li class="dropdown ">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><a href="#">Action</a></li>
@@ -79,6 +80,12 @@
                 <li><a href="#">Something else here</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#">Separated link</a></li>
+                <li>
+                  <a href="#">
+                    <span  class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
+                  </a>
+                </li>
+
               </ul>
             </li>
           </ul>
@@ -117,44 +124,95 @@
       </div>
     </div>
     <!-- dialog signInDialog -->
-    <div class="container signInDialog center-block">
-
-      <div class="form-signin ">
-        <h2 class="form-signin-heading text-center">Please sign in</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputName" class="sr-only">Password</label>
-        <input type="username" id="inputName" class="form-control" placeholder="Username" required>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
+    <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center" id="myModalLabel">Please sign in</h4>
+          </div>
+          <div class="modal-body">
+            <div class="signInDialog center-block">
+              <div class="form-signin ">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputName" class="sr-only">Password</label>
+                <input type="username" id="inputName" class="form-control" placeholder="Username" required>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox">
+                  <label>
                       <input type="checkbox" value="remember-me" /> Remember me
-              </label>
-        </div>
-        <span id="changeSignUp" class="text-primary">Sign Up</span>
-        <button id="signInBtn" class="btn btn-lg btn-primary btn-block " type="submit">Sign in</button>
-      </div>
+                  </label>
+                </div>
+                <span id="changeSignUp" class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
+                <button id="signInBtn" class="btn btn-lg btn-primary btn-block " type="submit" data-dismiss="modal">Sign in</button>
+              </div>
 
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
     </div>
+
+    <div class="modal fade" id="signUp" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center" id="myModalLabel">Please Sign Up</h4>
+          </div>
+          <div class="modal-body">
+            <div id="signUpDialog" class="signUpDialog center-block">
+              <div class="form-signUp">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail1" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputName" class="sr-only">Password</label>
+                <input type="username" id="inputName1" class="form-control" placeholder="Username" required>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
+                <label for="inputSurePassword" class="sr-only">Password</label>
+                <input type="password" id="inputSurePassword1" class="form-control" placeholder="surePassword" required>
+                <!-- <span id="changeSignIn" class="text-primary" data-toggle="modal" data-target="#signIn">Sign In?</span>                 -->
+                <button id="signUpBtn" class="btn btn-lg btn-primary btn-block " type="submit" data-dismiss="modal">Sign Up</button>
+              </div>
+
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id='signOutBtn' type="button" class="btn btn-primary">Sure Sign Out now?</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
 
     <!-- dialog signUpDialog -->
-    <div id="signUpDialog" class="container signUpDialog center-block">
 
-      <div class="form-signUp">
-        <h2 class="form-signUp-heading text-center ">Please Sign Up</h2>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail1" class="form-control" placeholder="Email address" required autofocus>
-        <label for="inputName" class="sr-only">Password</label>
-        <input type="username" id="inputName1" class="form-control" placeholder="Username" required>
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
-        <label for="inputSurePassword" class="sr-only">Password</label>
-        <input type="password" id="inputSurePassword1" class="form-control" placeholder="surePassword" required>
-        <button id="signUpBtn" class="btn btn-lg btn-primary btn-block " type="submit">Sign Up</button>
-      </div>
-
-    </div>
 
     <!-- carousel -->
     <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -275,100 +333,146 @@
     <div id="node" class="jumbotron newLadder ">
       <div class="container">
         <div class="row">
-          <h2>Give you a ladder to see the bigger world</h2>
-          <p>Enjoy your freedom time</p>
+          <h2 class="animated fadeInRight">Give you a ladder to see the bigger world</h2>
+          <p class="animated fadeInRight">Enjoy your freedom time</p>
           <button class="btn btn-danger">Open door</button>
         </div>
       </div>
     </div>
 
 
-    <div id="node" class="container-fluid nodeHide">
+    <div id="node" class="container-fluid ">
       <div class="row">
         <div class="col-xs-6 ">
           <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
         </div>
         <div class="col-xs-6">
-          <h4 class="animated fadeInRightBig">
+          <h4 class="animated slideInRight">
             Sometime,We will think what?
           </h4>
-          <p class="animated fadeInRightBig">
+          <p>
             What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
           </p>
-          <p class="animated fadeInRightBig">
-            <span class="glyphicon glyphicon-ok"></span>
-            <span>try best to learn by yourself</span>
-          </p>
+          <div>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+
+          </div>
         </div>
       </div>
     </div>
 
     <br/>
-    <div id="node" class="container-fluid nodeHide">
+    <div id="node" class="container-fluid ">
       <div class="row">
         <div class="col-xs-6">
-          <h4 class="animated fadeInRightBig">
+          <h4>
             Sometime,We will think what?
           </h4>
-          <p class="animated fadeInRightBig">
+          <p>
             What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
           </p>
-          <p class="animated fadeInRightBig">
+          <p>
             <span class="glyphicon glyphicon-ok"></span>
             <span>try best to learn by yourself</span>
           </p>
         </div>
         <div class="col-xs-6 ">
-          <img class="animated bounceInLeft" src="/images/load.gif" data-src="/images/2.jpg" alt="2.jpg">
+          <img class="animated bounceInRight" src="/images/load.gif" data-src="/images/2.jpg" alt="2.jpg">
         </div>
       </div>
     </div>
 
     <br/>
 
-    <div id="node" class="container-fluid nodeHide">
+    <div id="node" class="container-fluid ">
       <div class="row">
         <div class="col-xs-6 ">
           <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
         </div>
         <div class="col-xs-6">
-          <h4 class="animated fadeInRightBig">
+          <h4 class="animated slideInLeft">
             Sometime,We will think what?
           </h4>
-          <p class="animated fadeInRightBig">
+          <p>
             What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
           </p>
-          <p class="animated fadeInRightBig">
-            <span class="glyphicon glyphicon-ok"></span>
-            <span>try best to learn by yourself</span>
-          </p>
+          <div>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+
+          </div>
         </div>
       </div>
     </div>
-
-    <!-- 分页 -->
-    <nav aria-label="Page navigation" class="text-center">
-      <ul class="pagination">
-        <li>
-          <a href="#" aria-label="Previous">
+  </div>
+  <!-- 分页 -->
+  <nav aria-label="Page navigation" class="text-center">
+    <ul class="pagination">
+      <li>
+        <a href="#" aria-label="Previous">
                   <span aria-hidden="true">&laquo;</span>
                 </a>
-        </li>
-        <li><a href="#">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-        <li><a href="#">4</a></li>
-        <li><a href="#">5</a></li>
-        <li>
-          <a href="#" aria-label="Next">
+      </li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li>
+        <a href="#" aria-label="Next">
                   <span aria-hidden="true">&raquo;</span>
                 </a>
-        </li>
-      </ul>
-    </nav>
+      </li>
+    </ul>
+  </nav>
 
-    <!-- footer -->
-    <!-- <div class="container-fluid">
+  <!-- footer -->
+  <!-- <div class="container-fluid">
           <div class="row">
             <div class="col-xs-2 col-xs-offset-1">
               <a href="">
@@ -432,11 +536,11 @@
             </div>
           </div>
         </div> -->
-    <div class="container">
-      <div class="row text-center">
-        <span>2017 © komolei</span> <span> All Rights Reserved </span>
-      </div>
+  <div class="container">
+    <div class="row text-center">
+      <span>2017 © komolei</span> <span> All Rights Reserved </span>
     </div>
+  </div>
   </div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

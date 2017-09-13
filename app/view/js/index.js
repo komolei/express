@@ -1,22 +1,22 @@
 //load aniamte
-let loadAniamte = () => {
-    let loadAniamte = document.getElementsByClassName('spinner')[0];
-    loadAniamte.classList.remove('hide');
-}
-let missAniamte = () => {
-    let loadAniamte = document.getElementsByClassName('spinner')[0];
-    loadAniamte.classList.add('hide');
-}
-//signIn
-let signInDialog = document.getElementById('signInDialog');
-signInDialog.addEventListener('click', () => {
-    document.getElementsByClassName('signInDialog')[0].classList.toggle('changeDialog');
-})
-let signInBtn = document.getElementById('signInBtn');
-console.log("signInBtn:", signInBtn);
+// let loadAniamte = () => {
+//     let loadAniamte = document.getElementsByClassName('spinner')[0];
+//     loadAniamte.classList.remove('hide');
+// }
+// let missAniamte = () => {
+//     let loadAniamte = document.getElementsByClassName('spinner')[0];
+//     loadAniamte.classList.add('hide');
+// }
+// //signIn
+// let signInDialog = document.getElementById('signInDialog');
+// signInDialog.addEventListener('click', () => {
+//     document.getElementsByClassName('signInDialog')[0].classList.toggle('changeDialog');
+// })
+// let signInBtn = document.getElementById('signInBtn');
+// console.log("signInBtn:", signInBtn);
 let isLockUp = false;
 signInBtn.addEventListener('click', () => {
-    loadAniamte();
+    // loadAniamte();
     let loadAniamte = document.getElementsByClassName('spinner')[0];
     let email = document.getElementById('inputEmail').value;
     let username = document.getElementById('inputName').value;
@@ -31,14 +31,17 @@ signInBtn.addEventListener('click', () => {
     isLockUp = true;
     xhr.onreadystatechange = (username, password) => {
         // the data loaded,the loadAniamte miss
-        missAniamte();
+        // missAniamte();
         if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
             console.log("gg", xhr.responseText);
             let text = xhr.responseText;
-            document.getElementById('signInDialog').innerHTML = "<a href='javascript:void(0)'>welcome " + JSON.parse(text).username + "</a>"
+            document.getElementById('signInDialog').innerHTML = "<a href='javascript:void(0)'><span class='glyphicon glyphicon-user'></span>" + JSON.parse(text).username + "</a><span data-toggle='modal' data-target='#signOut'>Sign Out?</span>"
             // hide Dialog
-            document.getElementsByClassName('signInDialog')[0].classList.remove('changeDialog');
-
+            // document.getElementsByClassName('signInDialog')[0].classList.remove('changeDialog');
+            let signIn = document.getElementById('signIn');
+            // signIn.innerHTML=""
+            signIn.parentNode.removeChild(signIn);//think it's error
+            signIn.style.display='none';
             alert('sign In')
             return isLockUp = false;
         }
@@ -56,10 +59,22 @@ signInBtn.addEventListener('click', () => {
 //signUp
 let changeSignUp = document.getElementById('changeSignUp');
 changeSignUp.addEventListener('click', () => {
-    document.getElementById('signUpDialog').classList.add('show');
-    document.getElementsByClassName('signInDialog')[0].classList.remove('changeDialog');
+    console.log("fafadf");
+    document.getElementById('signIn').classList.remove('in');
+    // document.getElementById('signUpDialog').classList.add('show');
+    // document.getElementsByClassName('signInDialog')[0].classList.remove('changeDialog');
 })
+// can't turn right road
+// let changeSignIn = document.getElementById('changeSignIn');
+// changeSignIn.addEventListener('click', () => {
 
+//     document.getElementById('signUp').classList.remove('in');
+//     // document.getElementById('signIn').setAttribute('style','display:block!important');
+//     // document.getElementById('signIn').style.opacity = '33';
+
+//     // document.getElementById('signUpDialog').classList.add('show');
+//     // document.getElementsByClassName('signInDialog')[0].classList.remove('changeDialog');
+// })
 let signUpBtn = document.getElementById('signUpBtn');
 signUpBtn.addEventListener('click', () => {
     let email = document.getElementById('inputEmail1').value;
@@ -76,7 +91,7 @@ signUpBtn.addEventListener('click', () => {
     /\S{6,12}/.test(password) ? three = true : console.log("password error");
     document.getElementById('inputPassword1').value = '';
     document.getElementById('inputSurePassword1').value = '';
-    loadAniamte();
+    // loadAniamte();
     if (one && two && three && password === surePassword) {
         let xhr = new XMLHttpRequest(),
             method = 'POST',
@@ -90,8 +105,8 @@ signUpBtn.addEventListener('click', () => {
                 let text = xhr.responseText;
                 document.getElementById('signInDialog').innerHTML = "<a href='javascript:void(0)'>welcome " + JSON.parse(text).username + "</a>"
                 // hide Dialog
-                document.getElementsByClassName('signInDialog')[0].classList.remove('changeDialog');
-                document.getElementById('signUpDialog').classList.remove('show');
+                // document.getElementsByClassName('signInDialog')[0].classList.remove('changeDialog');
+                // document.getElementById('signUpDialog').classList.remove('show');
                 alert("sign up");
                 return isLockUp = false;
             }
@@ -107,6 +122,18 @@ signUpBtn.addEventListener('click', () => {
         xhr.send('email=' + email + '&username=' + username + '&password=' + password);
         //md. 一样的写法，现在就行了，idiot 🙄
     }
+})
+
+// signOUt function
+
+let signOutBtn=document.getElementById('signOutBtn');
+signOutBtn.addEventListener('click',()=>{
+    let xhr = new XMLHttpRequest(),
+    method = 'Get',
+    url = '/signOut';
+    xhr.open(method, url, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
 })
 
 //img load 
@@ -448,7 +475,7 @@ let nodeLazyLoad = () => {
         // $node.
         // $node.addClass('nodeShow');
         $node.removeClass('nodeHide');
-        $node.addClass('animated fadeIn')
+        $node.addClass('animated fadeInUp')
     }
     function isVisible($node) {
         var windowH = $(window).height();
@@ -470,7 +497,7 @@ let nodeLazyLoad = () => {
 
         // pit is jquery==>ID:selector should be used by this way $('div#node'),
         // if use this way like $('#node'),just select one result
-        $('div#node').each(function () {
+        $('div#node .row p').each(function () {
             console.log("this:", this);
             if (isVisible($(this))) {
                 show($(this));
