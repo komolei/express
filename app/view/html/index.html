@@ -1,96 +1,557 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="/css/index.css">
-</head>
-
-<body>
-    <p>hello my first express application!</p>
-    <form action="/signup" method="post">
-        <input type="text" name="username" id="username"><br/>
-        <input type="password" name="password" id="password"><br/>
-        <input type="password" name="surePassword" id="surePassword"><br/>
-        <button type="submit" id='signup'>SignUp</button>
-    </form>
-    <form action="/login" method="post">
-        <input type="text" name="username" id="username"><br/>
-        <input type="password" name="password" id="password"><br/>
-        <button type="submit" id="login">LogIn</button>
-    </form>
-    <p>div</p>
-    <div id="loginDiv">
-        <input type="text" name="username" id="username1"><br/>
-        <input type="password" name="password" id="password1"><br/>
-        <div type="submit" id="loginone">LogIn</div>
-    </div>
-</body>
-<script src="/js/index.js"></script>
-
-</html> -->
-
 <!DOCTYPE html>
 <html lang="zh-CN">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+  <title>index.html</title>
 
-    <title>Signin Template for Bootstrap</title>
+  <!-- Bootstrap -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/animate.min.css" rel="stylesheet">
+  <link href="/css/index.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" data-href="http://cdn2.jianshu.io/assets/web-a272073c5fdb4e0f1abb.css"> -->
+  <!-- <link rel="stylesheet" href="/css/index.css"> -->
 
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 
 <body>
+  <div class="firstLoad">
+    <div class="firstLoadBox">
+      <div id='indexLoad' class="text-center">
+        <img src="/images/load2.gif" data-src="/images/load2.gif" alt="loadIng">
+      </div>
+      <div class="progress">
+        <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+          aria-valuemax="100" style="width: 0%;">
+          0%
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrappedBox hide">
 
-    <div class="container">
-<!-- 
-        <form class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-            <div class="checkbox">
-                <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
+    <nav class="navbar navbar-inverse" style="margin-bottom:0">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+          <a class="navbar-brand" href="#">
+            <!-- <img class="" src="/images/logo.jpg" alt="logo icon" width="20px"> -->
+            <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">index <span class="sr-only">(current)</span></a></li>
+            <li><a href="/html/blog.html">Blog</a></li>
+
+          </ul>
+          <form class="navbar-form navbar-left">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form> -->
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li id="signInDialog" data-toggle="modal" data-target="#signIn"><a href="JavaScript:void(0)">SignIn</a></li>
+            <!-- <li class="dropdown disabled"> -->
+            <li class="dropdown ">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/html/blog.html">Blog</a></li>
+                <li><a href="/html/aboutme.html">About Me</a></li>
+                <li><a href="/html/blogEdit.html">BlogEdit</a></li>
+                <li role="separator" class="divider"></li>                
+                <li>
+                  <a href="#">
+                    <span  class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+
+
+    <!-- first version monitor loading situation -->
+
+    <!-- <div class="text-center loading">
+          <span id="loading">1</span>
+        </div> -->
+
+    <!-- loadanimate -->
+    <div class="spinner hide">
+      <div class="spinner-container container1">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container2">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+      <div class="spinner-container container3">
+        <div class="circle1"></div>
+        <div class="circle2"></div>
+        <div class="circle3"></div>
+        <div class="circle4"></div>
+      </div>
+    </div>
+    <!-- dialog signInDialog -->
+    <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center" id="myModalLabel">Please sign in</h4>
+          </div>
+          <div class="modal-body">
+            <div class="signInDialog center-block">
+              <div class="form-signin ">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputName" class="sr-only">Password</label>
+                <input type="username" id="inputName" class="form-control" placeholder="Username" required>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <div class="checkbox">
+                  <label>
+                      <input type="checkbox" value="remember-me" /> Remember me
+                  </label>
+                </div>
+                <span id="changeSignUp" class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
+                <button id="signInBtn" class="btn btn-lg btn-primary btn-block " type="submit" data-dismiss="modal">Sign in</button>
+              </div>
+
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="signUp" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-center" id="myModalLabel">Please Sign Up</h4>
+          </div>
+          <div class="modal-body">
+            <div id="signUpDialog" class="signUpDialog center-block">
+              <div class="form-signUp">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail1" class="form-control" placeholder="Email address" required autofocus>
+                <label for="inputName" class="sr-only">Password</label>
+                <input type="username" id="inputName1" class="form-control" placeholder="Username" required>
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
+                <label for="inputSurePassword" class="sr-only">Password</label>
+                <input type="password" id="inputSurePassword1" class="form-control" placeholder="surePassword" required>
+                <!-- <span id="changeSignIn" class="text-primary" data-toggle="modal" data-target="#signIn">Sign In?</span>                 -->
+                <button id="signUpBtn" class="btn btn-lg btn-primary btn-block " type="submit" data-dismiss="modal">Sign Up</button>
+              </div>
+
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+          </div>
+          <div class="modal-body">
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id='signOutBtn' type="button" class="btn btn-primary">Sure Sign Out now?</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- dialog signUpDialog -->
+
+
+    <!-- carousel -->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+
+
+      <div class="carousel-inner" role="listbox">
+        <div class="item active center-block">
+          <img class="center-block" src="/images/load2.gif" data-src="/images/1.jpg" alt="...">
+          <div class="carousel-caption">
+            <h4>welcome my website</h4>
+          </div>
+        </div>
+        <div class="item ">
+          <img class="center-block" src="/images/load2.gif" data-src="/images/2.jpg" alt="...">
+          <div class="carousel-caption">
+          </div>
+        </div>
+        <div class="item center-block">
+          <img class="center-block" src="/images/load2.gif" data-src="/images/3.jpg" alt="...">
+          <div class="carousel-caption">
+            <h4>see you again</h4>
+          </div>
+        </div>
+        <div class="item center-block">
+          <img class="center-block" src="/images/load2.gif" data-src="/images/3.jpg" alt="...">
+          <div class="carousel-caption">
+            <h4>whetting more,say less</h4>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+    </div>
+
+
+    <!-- img load -->
+    <!-- <div>
+      <div id="imgBox" class="thumbnail">
+        <img id="imgLoad" src="/images/load2.gif" data-src="http://s.amazeui.org/media/i/demos/bing-1.jpg" alt="wait Loading">
+      </div>
+      <div id="imgBox" class="thumbnail">
+        <img id="imgLoad" src="" data-src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQl_B-9g_lld7q9a3a6qI_eR4gERLoFSDCpBkm_Ob4dvnc3jpNN"
+          alt="wait Loading">
+      </div>
 
     </div>
-    <!-- /container -->
+    <div class="container">
+      <ul>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/0f14ad30f6c0b4e4cf96afcad7a0f9d6332e5b061b5f3c-uSUEUC_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/c1bd94fc89f73c24a19221167f2387d2e914778f1bbac4-jcqyr1_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/6285af1c7fb1b488756446ef2a2fcc63205a7e9e1221c2-DBVfZb_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/3f9d1434ba618579d50ae8c8476087f1a04d7ee3169f8e-zD2u09_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/81427fb53bed38bf1b6a0c5da1c5d5a485e00bd1149232-gn4CO1_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/916b5194a7692ab55142be6f5c99fdb12f5eb9e0168342-dBIspJ_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/d9f7f2e228a35dc8aa79282089b2ea3a3395f08f1e5cd3-yRWvbe_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/e41e09c65210c9caf94920d984ae80665aa83bc519a473-3oDXRy_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/76d022dacb461fa3e2697342b49cded7f33d5b121a0953-r6n9df_fw658"
+                        alt=""></a>
+        </li>
+
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/46af9c99033722ef9cd7577067ac66d081b78d0415c25d-S9VQE0_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/ad92b487448c97dfceda0a3c9075a9793eb5d9f01278be-rrmms4_fw658"
+                        alt=""></a>
+        </li>
+        <li>
+          <a href=""><img src="/images/load.gif" data-src="http://img.hb.aicdn.com/795a8baff06fc83abde8d03f18dd24b7d9bd8e0326bd3-rPRUKi_fw658"
+                        alt=""></a>
+        </li>
+      </ul>
+    </div> -->
+    <!-- jumbotron -->
+    <br/>
+    <div id="node" class="jumbotron newLadder ">
+      <div class="container">
+        <div class="row">
+          <h2 class="animated fadeInRight">Give you a ladder to see the bigger world</h2>
+          <p class="animated fadeInRight">Enjoy your freedom time</p>
+          <button class="btn btn-danger">Open door</button>
+        </div>
+      </div>
+    </div>
 
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    <div id="node" class="container-fluid ">
+      <div class="row">
+        <div class="col-xs-6 ">
+          <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+        </div>
+        <div class="col-xs-6">
+          <h4 class="animated slideInRight">
+            Sometime,We will think what?
+          </h4>
+          <p>
+            What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+          </p>
+          <div>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br/>
+    <div id="node" class="container-fluid ">
+      <div class="row">
+        <div class="col-xs-6">
+          <h4>
+            Sometime,We will think what?
+          </h4>
+          <p>
+            What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+          </p>
+          <p>
+            <span class="glyphicon glyphicon-ok"></span>
+            <span>try best to learn by yourself</span>
+          </p>
+        </div>
+        <div class="col-xs-6 ">
+          <img class="animated bounceInRight" src="/images/load.gif" data-src="/images/2.jpg" alt="2.jpg">
+        </div>
+      </div>
+    </div>
+
+    <br/>
+
+    <div id="node" class="container-fluid ">
+      <div class="row">
+        <div class="col-xs-6 ">
+          <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+        </div>
+        <div class="col-xs-6">
+          <h4 class="animated slideInLeft">
+            Sometime,We will think what?
+          </h4>
+          <p>
+            What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+          </p>
+          <div>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+            <p>
+              <span class="glyphicon glyphicon-ok"></span>
+              <span>try best to learn by yourself</span>
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- 分页 -->
+  <nav aria-label="Page navigation" class="text-center">
+    <ul class="pagination">
+      <li>
+        <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+      </li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">4</a></li>
+      <li><a href="#">5</a></li>
+      <li>
+        <a href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- footer -->
+  <!-- <div class="container-fluid">
+          <div class="row">
+            <div class="col-xs-2 col-xs-offset-1">
+              <a href="">
+                <p> 关于宏城装饰</p>
+              </a>
+              <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+              <p>
+                <a href="#"><span>首页</span></a>
+                <a href="#"><span>品高整装</span></a>
+                <a href="#"><span>工装</span></a>
+                <a href="#"><span>整装</span></a>
+              </p>
+              <p>
+                <a href="#"> <span>软装</span></a>
+                <a href="#"><span>易可易经风水</span></a>
+                <a href="#"><span>荣誉</span></a>
+              </p>
+              <p>
+                <a href="#">
+                              <span>工艺材料</span>
+                          </a>
+                <a href="#">
+                              <span>礼品商城</span>
+                          </a>
+              </p>
+            </div>
+            <div class="col-xs-5 second">
+              <p>联系我们</p>
+              <span class="icon"></span>
+              <div class="">
+                <p>
+                  联系热线：0574-83097099 83097089
+                </p>
+                <p>
+                  样板房展厅：鄞州区启明路818号创新18园区8幢56号1F
+                </p>
+                <p>
+                  总部管理机构：鄞州区启明路818号创新18园区8幢56号2F
+                </p>
+                <p>
+                  高端风水设计：鄞州区启明路818号创新18园区8幢56号3F
+                </p>
+              </div>
+            </div>
+            <div class="col-xs-4 third">
+              <p>关注宏城装饰</p>
+              <span class="icon"></span>
+              <div class="am-nbfc">
+                <div class="right am-fl am-margin-left-sm am-margin-top-0">
+                  <p>
+                    消防设施工程安装
+                  </p>
+                  <p>
+                    雕塑钢结构件制作 幕墙安装
+                  </p>
+                  <p>经营范围：建筑装饰及设计 园林绿化</p>
+                  <p>家装无忧指定企业 十大家装品牌企业</p>
+                </div>
+              </div>
+      
+            </div>
+          </div>
+        </div> -->
+  <div class="container">
+    <div class="row text-center">
+      <span>2017 © komolei</span> <span> All Rights Reserved </span>
+    </div>
+  </div>
+  </div>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/index.js"></script>
+  <script>
+    // $('.carousel').carousel({
+    //   interval: 1500
+    // })
+  </script>
 </body>
 
 </html>

@@ -41,7 +41,7 @@ signInBtn.addEventListener('click', () => {
             let signIn = document.getElementById('signIn');
             // signIn.innerHTML=""
             signIn.parentNode.removeChild(signIn);//think it's error
-            signIn.style.display='none';
+            signIn.style.display = 'none';
             alert('sign In')
             return isLockUp = false;
         }
@@ -126,11 +126,11 @@ signUpBtn.addEventListener('click', () => {
 
 // signOUt function
 
-let signOutBtn=document.getElementById('signOutBtn');
-signOutBtn.addEventListener('click',()=>{
+let signOutBtn = document.getElementById('signOutBtn');
+signOutBtn.addEventListener('click', () => {
     let xhr = new XMLHttpRequest(),
-    method = 'Get',
-    url = '/signOut';
+        method = 'Get',
+        url = '/signOut';
     xhr.open(method, url, true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
@@ -507,3 +507,31 @@ let nodeLazyLoad = () => {
     $(window).on('scroll', check)
 }
 nodeLazyLoad();
+
+//blog js
+// blog request
+
+let blogLoadMore = document.querySelector('#blogLoadMore');
+blogLoadMore.addEventListener('click', () => {
+    let xhr = new XMLHttpRequest(),
+        method = 'Get',
+        url = '/blog?length=3';
+    if (isLockUp) return;
+    isLockUp = true;
+    xhr.onreadystatechange = () => {
+        if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+            console.log("gg", xhr.responseText);
+            let text = xhr.responseText;
+            // document.getElementById('signInDialog').innerHTML = "<a href='javascript:void(0)'>welcome " + JSON.parse(text).username + "</a>"
+            return isLockUp = false;
+        }
+        else {
+            console.log("the password is not same");
+            return isLockUp = false;
+        }
+    }
+    xhr.open(method, url, true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send();
+    //md. 一样的写法，现在就行了，idiot 🙄
+})

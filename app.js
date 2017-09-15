@@ -1,6 +1,7 @@
 let express = require('express');
 let app = express();
 let path = require('path');
+let router = express.Router();
 // let mongoose = require('mongoose');
 // mongoose.connect('mongodb://localhost/user'); //forget to connect mongodb
 // let UserSignUp = require('./SignUp.js');
@@ -12,9 +13,10 @@ app.get('/', (req, res) => {
     // now send .html
     // res.send(index.html);//error 
     // res.sendFile(process.cwd() + '/app/view/html/index.html');
-    res.sendFile(process.cwd() + '/app/view/html/bootstrap.html');
+    res.sendFile(process.cwd() + '/app/view/html/index.html');
 
 })
+
 // static resource
 
 app.use(express.static(path.join(__dirname, '/app/view')));
@@ -98,6 +100,8 @@ let SignUpInfo = (data) => {
 //     }))
 // }
 let bodyParser = require('body-parser');
+// to analyze  the http's contentType=application/json
+app.use(bodyParser.json({limit: '1mb'}))
 app.use(bodyParser.urlencoded({
     extended: true,
 }))
@@ -117,7 +121,7 @@ app.post('/signUp', (req, res) => {
         user.save((err, doc) => {
             if (err) console.log(err);
             // res.redirect('/next')
-            res.json({username:user.username})
+            res.json({ username: user.username })
             console.log("save success", doc);
         })
     })
@@ -165,20 +169,42 @@ app.post('/signIn', (req, res) => {
         // })
     })
     // db.close();
-    
+
 })
-app.get('/signOut',(req,res)=>{
-    console.log(req.query,"nothing");
+app.get('/signOut', (req, res) => {
+    console.log(req.query, "nothing");
     // res.redirect('/next');
     res.sendFile(process.cwd() + '/app/view/html/bootstrap.html');
     // res.send('fuck')
-    
+
 })
 app.use('/next', (req, res) => {
     res.send('signUp success');
     // res.sendFile(process.cwd() + '/app/view/html/bootstrap.html');
-    
+
 })
+app.get('/blog', (req, res) => {
+
+    let db = mongodbConnection();
+    db.on('error', console.error.bind(console, 'connection error'));
+    db.once('open', () => {
+        let blog = require('./Blog.js');
+        let blogInfo = req.query;
+        console.log("blogInfo1", req.query);
+        // blog.find
+    })
+})
+
+// use mid
+router.use('/blogEdit', (req, res) => {
+    // res.send()
+    // console.log("what is req:",req);
+    console.log("what is req.body:",req.body);
+    console.log("what is req.param:",req.params);
+    console.log("what is req.quert:",req.query);
+    res.json({ message: 'success' });
+})
+app.use('/', router);
 let server = app.listen(3000, () => {
     let host = server.address().address;
     let port = server.address().port;

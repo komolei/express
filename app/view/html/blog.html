@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>index.html</title>
+
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/animate.min.css" rel="stylesheet">
+    <link href="/css/index.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" data-href="http://cdn2.jianshu.io/assets/web-a272073c5fdb4e0f1abb.css"> -->
+    <!-- <link rel="stylesheet" href="/css/index.css"> -->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="firstLoad">
+        <div class="firstLoadBox">
+            <div id='indexLoad' class="text-center">
+                <img src="/images/load2.gif" data-src="/images/load2.gif" alt="loadIng">
+            </div>
+            <div class="progress">
+                <div id="progressBar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                    aria-valuemax="100" style="width: 0%;">
+                    0%
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrappedBox hide">
+
+        <nav class="navbar navbar-inverse" style="margin-bottom:0">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                      <span class="sr-only">Toggle navigation</span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                      <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <!-- <img class="" src="/images/logo.jpg" alt="logo icon" width="20px"> -->
+                        <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="/">index <span class="sr-only">(current)</span></a></li>
+                        <li><a href="/html/blog.html">Blog</a></li>
+
+                    </ul>
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="signInDialog" data-toggle="modal" data-target="#signIn"><a href="JavaScript:void(0)">SignIn</a></li>
+                        <!-- <li class="dropdown disabled"> -->
+                        <li class="dropdown ">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/html/blog.html">Blog</a></li>
+                                <li><a href="/html/aboutme.html">About Me</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                          <span  class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
+                        </a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+
+
+        <!-- first version monitor loading situation -->
+
+        <!-- <div class="text-center loading">
+          <span id="loading">1</span>
+        </div> -->
+
+        <!-- loadanimate -->
+        <div class="spinner hide">
+            <div class="spinner-container container1">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container2">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+            <div class="spinner-container container3">
+                <div class="circle1"></div>
+                <div class="circle2"></div>
+                <div class="circle3"></div>
+                <div class="circle4"></div>
+            </div>
+        </div>
+        <!-- dialog signInDialog -->
+        <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Please sign in</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="signInDialog center-block">
+                            <div class="form-signin ">
+                                <label for="inputEmail" class="sr-only">Email address</label>
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+                                <label for="inputName" class="sr-only">Password</label>
+                                <input type="username" id="inputName" class="form-control" placeholder="Username" required>
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                                <div class="checkbox">
+                                    <label>
+                      <input type="checkbox" value="remember-me" /> Remember me
+                  </label>
+                                </div>
+                                <span id="changeSignUp" class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
+                                <button id="signInBtn" class="btn btn-lg btn-primary btn-block " type="submit" data-dismiss="modal">Sign in</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="signUp" tabindex="-2" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-center" id="myModalLabel">Please Sign Up</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="signUpDialog" class="signUpDialog center-block">
+                            <div class="form-signUp">
+                                <label for="inputEmail" class="sr-only">Email address</label>
+                                <input type="email" id="inputEmail1" class="form-control" placeholder="Email address" required autofocus>
+                                <label for="inputName" class="sr-only">Password</label>
+                                <input type="username" id="inputName1" class="form-control" placeholder="Username" required>
+                                <label for="inputPassword" class="sr-only">Password</label>
+                                <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
+                                <label for="inputSurePassword" class="sr-only">Password</label>
+                                <input type="password" id="inputSurePassword1" class="form-control" placeholder="surePassword" required>
+                                <!-- <span id="changeSignIn" class="text-primary" data-toggle="modal" data-target="#signIn">Sign In?</span>                 -->
+                                <button id="signUpBtn" class="btn btn-lg btn-primary btn-block " type="submit" data-dismiss="modal">Sign Up</button>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="signOut" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button id='signOutBtn' type="button" class="btn btn-primary">Sure Sign Out now?</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- dialog signUpDialog -->
+
+        <div id="node" class="container-fluid ">
+            <div class="row">
+                <div class="col-xs-6 ">
+                    <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+                </div>
+                <div class="col-xs-6">
+                    <h4 class="animated slideInRight">
+                        Sometime,We will think what?
+                    </h4>
+                    <p>
+                        What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+                    </p>
+                    <div>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+        <div id="node" class="container-fluid ">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h4>
+                        Sometime,We will think what?
+                    </h4>
+                    <p>
+                        What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+                    </p>
+                    <p>
+                        <span class="glyphicon glyphicon-ok"></span>
+                        <span>try best to learn by yourself</span>
+                    </p>
+                </div>
+                <div class="col-xs-6 ">
+                    <img class="animated bounceInRight" src="/images/load.gif" data-src="/images/2.jpg" alt="2.jpg">
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div id="node" class="container-fluid ">
+            <div class="row">
+                <div class="col-xs-6 ">
+                    <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+                </div>
+                <div class="col-xs-6">
+                    <h4 class="animated slideInLeft">
+                        Sometime,We will think what?
+                    </h4>
+                    <p>
+                        What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+                    </p>
+                    <div>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br/>
+
+        <div id="node" class="container-fluid ">
+            <div class="row">
+                <div class="col-xs-6 ">
+                    <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+                </div>
+                <div class="col-xs-6">
+                    <h4 class="animated slideInLeft">
+                        Sometime,We will think what?
+                    </h4>
+                    <p>
+                        What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+                    </p>
+                    <div>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+        
+        <br/>
+
+        <div id="node" class="container-fluid ">
+            <div class="row">
+                <div class="col-xs-6 ">
+                    <img class="animated slideInLeft" src="/images/load.gif" data-src="/images/1.jpg" alt="1.jpg">
+                </div>
+                <div class="col-xs-6">
+                    <h4 class="animated slideInLeft">
+                        Sometime,We will think what?
+                    </h4>
+                    <p>
+                        What I learn is that how to use express to do a website. And study too much English words,such as Monitor,situation...
+                    </p>
+                    <div>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-ok"></span>
+                            <span>try best to learn by yourself</span>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="blogLoadMore" class="btn btn-success center-block">Load More</button>
+        <!-- 分页 -->
+        <nav aria-label="Page navigation" class="text-center">
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                    <a href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+                </li>
+            </ul>
+        </nav>
+
+
+        <div class="container">
+            <div class="row text-center">
+                <span>2017 © komolei</span> <span> All Rights Reserved </span>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script>
+        // $('.carousel').carousel({
+    //   interval: 1500
+    // })
+    </script>
+</body>
+
+</html>
