@@ -25,7 +25,7 @@ blogEditBtn.addEventListener('click', () => {
     fetch(url).then((response) => {
         console.log("response:", response);
         return response.json();
-    }).then((json) => {
+    }).then(json => {
         console.log("this is response:", json);
     }).catch(error => console.log(error))
 

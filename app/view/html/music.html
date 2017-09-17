@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="referrer" content="no-referrer">
+    <title>Music</title>
+    <script src="/js/jquery-1.7.min.js"></script>
+    <style>
+        .container {
+            margin: 0 auto;
+            width: 400px;
+            text-align: center;
+        }
+
+        li {
+            list-style: none;
+            color: red;
+        }
+
+        .musicBox {
+            /* text-align: center; */
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+            z-index: 33;
+        }
+
+        .lyricBox {
+            /* position: absolute; */
+            position: relative;
+            height: 400px;
+
+            /* left: 50%; */
+            /* transform: translateX(-50%); */
+            z-index: 22;
+            /* text-align: center; */
+            background-image: url("/images/load.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>I want to do a music player</h3>
+        <h4>so ,there is a music player </h4>
+        <div class="musicBox">
+            <div class="lyricBox">See Music Player</div>
+            <!-- <img src="/images/load.gif" alt="please click button"> -->
+            <div id="musicPlay">
+                <audio controls="controls" src="http://yinyueshiting.baidu.com/data2/music/e3231d1cf8eed2235caaa48cec86e03a/540297215/23077450400128.mp3?xcode=41ea3ff94e499f4b350a5c038dd045b5"
+                    autoplay="autoplay">
+
+                </audio>
+
+            </div>
+        </div>
+
+        <button class="getMusic">Next Music</button>
+        <button class="musicPlayBtn">play</button>
+        <button class="musicPauseBtn">Pause</button>
+
+    </div>
+</body>
+<script>
+    let getMusic = document.querySelector('.getMusic');
+    let musicPlay = document.getElementById('musicPlay');
+    let musicBox = document.querySelector('.musicBox');
+    let img = document.querySelector('img');
+    let audio = document.querySelector('audio');
+    let lyricBox = document.querySelector('.lyricBox');
+    let musicPlayBtn = document.querySelector('.musicPlayBtn');
+    let musicPauseBtn = document.querySelector('.musicPauseBtn');
+
+    musicPlayBtn.addEventListener('click', () => {
+        let audioBtn = document.querySelector('auido');
+        audio.play();
+    })
+    musicPauseBtn.addEventListener('click', () => {
+        let audioBtn = document.querySelector('audio');
+        console.log("audio", audio);
+        audio.pause();
+    })
+    //baidu api use
+
+    let baiduMusic = () => {
+        let url = "http://api.jirengu.com/fm/getSong.php";
+        // for github page using
+        // let url="https://jirenguapi.applinzi.com/fm/getSong.php"
+        fetch(url, { method: 'Get', mode: 'cors', cache: 'default', })
+            .then((response) => response.json())
+            .then(json => {
+                console.log("json:", json);
+                let lyric = json.song[0].lrc;
+                let imgSrc = json.song[0].picture;
+                // img.setAttribute('src', imgSrc);
+                lyricBox.style.backgroundImage = "url(" + imgSrc + ")"
+
+                return json.song[0]
+            })
+            .then(data => {
+                // let url="https://norefer.com/to/"+data.url+""
+                let url = data.url;
+                getLrc(data.sid);
+                audio.setAttribute('src', url);
+                audio.setAttribute('autoplay', "autoplay")
+            })
+            .catch(error => console.log(error));
+    }
+    getMusic.addEventListener('click', baiduMusic)
+
+    // get lyric
+
+    let getLrc = (sid) => {
+        if (document.querySelector('.lyricUl') != null) {
+            document.querySelector('.lyricBox').removeChild(document.querySelector('.lyricUl'));
+            console.log("ggggggggggggg");
+
+        }
+        let url = "http://api.jirengu.com/fm/getLyric.php?sid=" + sid;
+        console.log("url:", url);
+        let init = {
+            method: 'Get',
+        }
+        fetch(url, init).then(response => response.json()).then(data => {
+            console.log("data is what:", data.lyric);
+            // let lyric=JSON.parse(data.lyric);
+            let lyric = data.lyric;
+            let regexp = /\[\S*\]/g
+            lyric = lyric.split(regexp);
+            // document.querySelector('.lyricUl').remove();
+            let ul = document.createElement('ul');
+            ul.classList.add('lyricUl');
+            lyricBox.appendChild(ul);
+            lyric.map((element, index) => {
+                let li = document.createElement('li');
+                li.textContent = element;
+                console.log("li:", li);
+                ul.appendChild(li)
+            })
+            console.log("lyric:", lyric);
+            // lyric.textContent=data.lyric;
+            setTimeout(() => {
+                setInterval("lyricAnimate()", 700);
+                console.log("move");
+            }, 1000 * 60)
+
+
+
+        })
+    }
+
+
+    // lyric animate
+    let n = 0;
+    let lyricAnimate = () => {
+        n++;
+        console.log("n:", n);
+        let lyricUl = document.querySelector('.lyricUl');
+        lyricUl.style.marginTop = -5 * n + 'px';
+        console.log("aaa");
+    }
+    // setInterval(lyricAnimate(),100);
+
+</script>
+
+</html>
