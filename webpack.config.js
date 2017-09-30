@@ -4,10 +4,11 @@ const extractTextWebpackPlugin = require('extract-text-webpack-plugin');
 const UgLifyJsPlugin = require("uglifyjs-webpack-plugin");
 // const importBabel = require("babel-plugin-import");
 // const 
-// let app = './app.js'
+
+let app = './app/view/js/app.js'
 // let app = { app: ['babel-polyfill', 'react-hot-loader/patch', './app.js'] }
 // let app = { app: ['babel-polyfill', 'react-hot-loader/patch', './newSrc/index.js'] }
-let app = { app: ['./Ant/index.js'] }
+// let app = { app: ['./Ant/index.js'] }
 // let app = { app: ['babel-polyfill', './app.js'] }
 // use for src's index.js
 // let app = { app: ['babel-polyfill', './src/index.js'] }
@@ -15,9 +16,9 @@ let app = { app: ['./Ant/index.js'] }
 module.exports = {
     entry: app,
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, './app/view/dist'),
         filename: '[name].js',
-        publicPath: "./dist/"
+        publicPath: "./app/view/dist/"
     },
     // devtool: 'source-map',
     // devServer: {

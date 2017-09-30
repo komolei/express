@@ -20,6 +20,8 @@ app.get('/', (req, res) => {
 // static resource
 
 app.use(express.static(path.join(__dirname, '/app/view')));
+
+
 // app.get('/next1', (req, res) => {
 //     res.send("you are at next1's page")
 // })
