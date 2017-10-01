@@ -103,7 +103,7 @@ let SignUpInfo = (data) => {
 // }
 let bodyParser = require('body-parser');
 // to analyze  the http's contentType=application/json
-app.use(bodyParser.json({limit: '1mb'}))
+app.use(bodyParser.json({ limit: '1mb' }))
 app.use(bodyParser.urlencoded({
     extended: true,
 }))
@@ -201,14 +201,26 @@ app.get('/blog', (req, res) => {
 router.use('/blogEdit', (req, res) => {
     // res.send()
     // console.log("what is req:",req);
-    console.log("what is req.body:",req.body);
-    console.log("what is req.param:",req.params);
-    console.log("what is req.quert:",req.query);
+    console.log("what is req.body:", req.body);
+    console.log("what is req.param:", req.params);
+    console.log("what is req.quert:", req.query);
     res.json({ message: 'success' });
 })
 app.use('/', router);
-let server = app.listen(3000, () => {
-    let host = server.address().address;
-    let port = server.address().port;
-    console.log('Example app listening at http://%s:%s', host, port);
-})
+// let server = app.listen(3000, () => {
+//     let host = server.address().address;
+//     let port = server.address().port;
+//     console.log('Example app listening at http://%s:%s', host, port);
+// })
+
+let fs=require('fs');
+// ssl
+let sslOptions = {
+    key:fs.readFileSync('account.key'),
+    cert:fs.readFileSync('domain.crt')
+};
+
+let http = require('http');
+let https = require('https');
+http.createServer(app).listen(3000);
+https.createServer(sslOptions, app).listen(8443);
