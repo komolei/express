@@ -206,7 +206,16 @@ router.use('/blogEdit', (req, res) => {
     console.log("what is req.quert:", req.query);
     res.json({ message: 'success' });
 })
-app.use('/', router);
+// app.use('/', router);
+app.get('/', function (req, res) {
+    if(req.protocol === 'https') {
+        res.status(200).send('This is https visit!');
+    }
+    else {
+        res.status(200).send('This is http visit!');
+    }
+});
+
 // let server = app.listen(3000, () => {
 //     let host = server.address().address;
 //     let port = server.address().port;
@@ -214,13 +223,23 @@ app.use('/', router);
 // })
 
 let fs=require('fs');
+// let tls=require('tls');
+// let forceSSL=require('express-force-ssl');
 // ssl
 let sslOptions = {
-    key:fs.readFileSync('account.key'),
-    cert:fs.readFileSync('domain.crt')
+    key:fs.readFileSync('./app/view/ssl/private.pem'),
+    cert:fs.readFileSync('./app/view/ssl/ca.cer'),
 };
-
+// let server=tls.createServer(sslOptions,()=>{
+//     console.log("tls");
+// })
+// server.listen(8000,()=>{
+//     console.log("success");
+// })
 let http = require('http');
 let https = require('https');
 http.createServer(app).listen(3000);
 https.createServer(sslOptions, app).listen(8443);
+// let secureServer=https.createServer(sslOptions,app);
+// app.use(forceSSL);
+// secureServer.listen(443);
