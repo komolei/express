@@ -243,3 +243,17 @@ https.createServer(sslOptions, app).listen(8443);
 // let secureServer=https.createServer(sslOptions,app);
 // app.use(forceSSL);
 // secureServer.listen(443);
+//nginx
+//openssl req -new -sha256 -key domain.key -subj "/" -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf "[SAN]\nsubjectAltName=DNS:komolei.cn,DNS:www.komolei.cn")) > domain.csr
+// server {
+    // server_name www.komolei.cn komolei.cn;
+
+    // location ^~ /.well-known/acme-challenge/ {
+    //     alias /home/xxx/www/challenges/;
+    //     try_files $uri =404;
+    // }
+
+    // location / {
+    //     rewrite ^/(.*)$ https://komolei.cn/$1 permanent;
+    // }
+// }
