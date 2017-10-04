@@ -237,7 +237,7 @@ app.get('/', function (req, res) {
 //     console.log("success");
 // })
 let http = require('http');
-let https = require('https');
+// let https = require('https');
 http.createServer(app).listen(3000);
 // https.createServer(sslOptions, app).listen(8443);
 // let secureServer=https.createServer(sslOptions,app);
@@ -276,3 +276,4 @@ http.createServer(app).listen(3000);
 // --fullchain-file /root/komolei/ssl/komolei.cn.cer \
 // --reloadcmd "service nginx force-reload"
 
+// curl --trace output.txt www.komolei.cn
