@@ -222,14 +222,14 @@ app.get('/', function (req, res) {
 //     console.log('Example app listening at http://%s:%s', host, port);
 // })
 
-let fs=require('fs');
+// let fs=require('fs');
 // let tls=require('tls');
 // let forceSSL=require('express-force-ssl');
 // ssl
-let sslOptions = {
-    key:fs.readFileSync('./app/view/ssl/private.pem'),
-    cert:fs.readFileSync('./app/view/ssl/ca.cer'),
-};
+// let sslOptions = {
+//     key:fs.readFileSync('./app/view/ssl/private.pem'),
+//     cert:fs.readFileSync('./app/view/ssl/ca.cer'),
+// };
 // let server=tls.createServer(sslOptions,()=>{
 //     console.log("tls");
 // })
@@ -239,7 +239,7 @@ let sslOptions = {
 let http = require('http');
 let https = require('https');
 http.createServer(app).listen(3000);
-https.createServer(sslOptions, app).listen(8443);
+// https.createServer(sslOptions, app).listen(8443);
 // let secureServer=https.createServer(sslOptions,app);
 // app.use(forceSSL);
 // secureServer.listen(443);
@@ -257,3 +257,22 @@ https.createServer(sslOptions, app).listen(8443);
     //     rewrite ^/(.*)$ https://komolei.cn/$1 permanent;
     // }
 // }
+
+
+// acme.sh  --issue  -d komolei.cn -d www.komolei.cn  --webroot  /home/wwwroot/komolei.cn/
+
+// acme.sh  --installcert  -d  komolei.cn   \
+// --key-file   /usr/local/nginx/ssl/komolei.cn.key \
+// --fullchain-file /usr/local/nginx/ssl/komolei.cn.cer \
+// --reloadcmd  "service nginx force-reload"
+
+// export Ali_Key="LTAIEkP5nouWbvWi"
+// export Ali_Secret="IdBwzxUo2OBPSxtAxnVv4urd48LNhs"
+// acme.sh --issue --dns dns_ali -d komolei.cn -d www.komolei.cn
+
+
+// ./acme.sh  --installcert -d komolei.cn \
+// --key-file /root/komolei/ssl/komolei.cn.key \
+// --fullchain-file /root/komolei/ssl/komolei.cn.cer \
+// --reloadcmd "service nginx force-reload"
+
