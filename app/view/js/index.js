@@ -535,3 +535,16 @@ blogLoadMore.addEventListener('click', () => {
     xhr.send();
     //md. 一样的写法，现在就行了，idiot 🙄
 })
+
+
+// add github Oauth service
+let github=document.querySelector('#github');
+github.addEventListener('click',()=>{
+    let url= ' https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1';
+    let init={
+        method:'get',
+    };
+    fetch(url,init).then(response=>response.json()).then(data=>{
+        console.log("github:",data);
+    })
+})

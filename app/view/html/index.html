@@ -21,7 +21,7 @@
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-  
+
 </head>
 
 <body>
@@ -62,7 +62,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="/">index <span class="sr-only">(current)</span></a></li>
             <li><a href="/html/blog.html">Blog</a></li>
-
+            <li id='github'><a href="https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1">Github</a></li>
           </ul>
           <form class="navbar-form navbar-left">
             <div class="form-group">
@@ -578,6 +578,18 @@
   <script>
     // $('.carousel').carousel({
     //   interval: 1500
+    // })
+    // add github Oauth service
+    // let github = document.querySelector('#github');
+    // github.addEventListener('click', () => {
+    //   let url = 'https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1';
+
+    //   let init = {
+    //     method: 'get',
+    //   };
+    //   fetch(url, init).then(response => response.json()).then(data => {
+    //     console.log("github:", data);
+    //   })
     // })
   </script>
 </body>
