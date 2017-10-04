@@ -2,6 +2,7 @@ let express = require('express')
 let app = express()
 let path = require('path')
 let router = express.Router()
+let fetch=require('node-fetch');
 // let mongoose = require('mongoose')
 // mongoose.connect('mongodb://localhost/user') //forget to connect mongodb
 // let UserSignUp = require('./SignUp.js')
@@ -198,25 +199,24 @@ app.get('/blog', (req, res) => {
 app.get('/github', (req, res) => {
   let data = req.query
   console.log('github data:', data)
-  let myHeaders = new Headers()
-  let formData = new FormData()
-  formData.append('client_ID', '517ea4027af95e1823b1')
-  formData.append('client_secret', 'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d')
-  formData.append('code', data.code)
-  myHeaders.append('Content-Type', 'application/json')
-  let request = new Request('https://github.com/login/oauth', {
+
+  let formData = 'client_ID=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code
+  let url = 'https://github.com/login/oauth/access_token'
+  let init = {
     method: 'POST',
     mode: 'cors',
-    body: JSON.stringify(formData),
-    headers: myHeaders
-  })
-  fetch(request).then(response => response.json()).then(data => {
+    body: formData,
+    headers: {
+      'Content-type': 'application/x-www-form-urlencoded'
+    }
+  }
+  fetch(url, init).then(response => response.json()).then(data => {
     let info = data.body
     console.log('dfaf:', info)
     let url = 'https://api.github.com/user?access_token=' + info.access_token
     fetch(url, {method: 'get'}).then(response => response.json()).then(data => {
       let userInfo = data.query
-      res.send(userInfo);
+      res.send(userInfo)
     })
   })
   res.send('github.com:')
