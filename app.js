@@ -197,18 +197,11 @@ app.get('/blog', (req, res) => {
 // oauth
 
 app.get('/github', (req, res) => {
-  let data = req.query
-  console.log('github data:', data)
-
-  let formData = 'client_ID=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code
-  let url = 'https://github.com/login/oauth/access_token'
+  let data = req.query;
+  console.log('github data:', data);  
+  let url = 'https://github.com/login/oauth/access_token?client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code;
   let init = {
-    method: 'POST',
-    mode: 'cors',
-    body: formData,
-    headers: {
-      'Content-type': 'application/x-www-form-urlencoded'
-    }
+    method: 'post',
   }
   fetch(url, init).then(response => response.json()).then(data => {
     let info = data.body
