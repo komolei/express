@@ -198,15 +198,15 @@ app.get('/blog', (req, res) => {
 // let formData = 'client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code;
 app.get('/github', (req, res) => {
   let data = req.query;
-  console.log('github data:', data);
+  console.log('github data\'code:', data.code);
   let formData={
     client_id:'517ea4027af95e1823b1',
-    slient_secret:'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d',
+    client_secret:'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d',
     code:data.code,
   }; 
   let url = 'https://github.com/login/oauth/access_token';
   let init = {
-    method: 'get',
+    method: 'POST',
     mode: 'cors',
     body: JSON.stringify(formData),
     headers: {
@@ -214,16 +214,18 @@ app.get('/github', (req, res) => {
     }
   }
   console.log("init",init); 
-  fetch(url, init).then(response => response.json()).then(data => {
+  let request=new Request(url,init);  
+  console.log("request is what",request);
+  fetch(url, init).then(response => {console.log("first response is:",response); return response.json()}).then(data => {
     console.log("request success",data);
     let info = data.body
     console.log('dfaf:', info)
     let url = 'https://api.github.com/user?access_token=' + info.access_token
-    fetch(url, {method: 'get'}).then(response => response.json()).then(data => {
+    fetch(url, {method: 'get'}).then(response=>{console.log("second response is:",response); return response.json()}).then(data => {
       let userInfo = data.query
       res.send(userInfo)
     })
-  }).catch(err=>res.send("err: ",err));
+  }).catch(err=>console.log("err: ",err));
   res.send('github.com:')
 })
 
@@ -267,7 +269,7 @@ app.get('/', function (req, res) {
 // })
 let http = require('http')
 // let https = require('https')
-http.createServer(app).listen(3000)
+http.createServer(app).listen(4000)
 // https.createServer(sslOptions, app).listen(8443)
 // let secureServer=https.createServer(sslOptions,app)
 // app.use(forceSSL)
