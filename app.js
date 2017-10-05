@@ -214,9 +214,9 @@ app.get('/github', (req, res) => {
     }
   }
   console.log("init",init); 
-  let request=new Request(url,init);  
-  console.log("request is what",request);
-  fetch(url, init).then(response => {console.log("first response is:",response); return response.json()}).then(data => {
+  // let request=new Request(url,init);  
+  // console.log("request is what",request);
+  fetch(url, init).then(response => {console.log("first response is:",response,response.json(),"sdfadfga"); return response.json()}).then(data => {
     console.log("request success",data);
     let info = data.body
     console.log('dfaf:', info)
