@@ -197,6 +197,7 @@ app.get('/blog', (req, res) => {
 // oauth
 // let formData = 'client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code;
 app.get('/github', (req, res) => {
+  console.log("callback success");
   let data = req.query;
   console.log('github data\'code:', data.code);
   let formData={
