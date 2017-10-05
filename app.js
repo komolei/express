@@ -195,15 +195,27 @@ app.get('/blog', (req, res) => {
   })
 })
 // oauth
-
+// let formData = 'client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code;
 app.get('/github', (req, res) => {
   let data = req.query;
-  console.log('github data:', data);  
-  let url = 'https://github.com/login/oauth/access_token?client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code;
+  console.log('github data:', data);
+  let formData={
+    client_id:'517ea4027af95e1823b1',
+    slient_secret:'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d',
+    code:data.code,
+  }; 
+  let url = 'https://github.com/login/oauth/access_token';
   let init = {
-    method: 'post',
+    method: 'get',
+    mode: 'cors',
+    body: JSON.stringify(formData),
+    headers: {
+      'Content-type': 'application/json'
+    }
   }
+  console.log("init",init); 
   fetch(url, init).then(response => response.json()).then(data => {
+    console.log("request success",data);
     let info = data.body
     console.log('dfaf:', info)
     let url = 'https://api.github.com/user?access_token=' + info.access_token
@@ -211,7 +223,7 @@ app.get('/github', (req, res) => {
       let userInfo = data.query
       res.send(userInfo)
     })
-  })
+  }).catch(err=>res.send("err: ",err));
   res.send('github.com:')
 })
 
