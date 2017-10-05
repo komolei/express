@@ -197,51 +197,57 @@ app.get('/blog', (req, res) => {
 // oauth
 // let formData = 'client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code
 app.get('/github', (req, res) => {
-  console.log('callback success')
-  let data = req.query
-  console.log("github data'code:", data.code)
-  let formData = {
-    client_id: '517ea4027af95e1823b1',
-    client_secret: 'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d',
-    code: data.code,
-    redirect_uri: 'http://127.0.0.1:4000/github'
-  }
-  let url = 'https://github.com/login/oauth/access_token'
-  let init = {
-    method: 'POST',
-    // mode: 'cors',
-    body: JSON.stringify(formData),
-    headers: {
-      'Content-type': 'application/json'
+  let firstUrl = 'https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1&state=1314&redirect_uri=https://komolei.cn/github'
+  fetch(firstUrl, {method: 'get'}).then(
+    response => response.json()
+  ).then(data => {
+    console.log('first request:', data, '\n');return data}).then(data => {
+    console.log('callback success')
+    let data = req.query
+    console.log("github data'code:", data.code)
+    let formData = {
+      client_id: '517ea4027af95e1823b1',
+      client_secret: 'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d',
+      code: data.code,
+      redirect_uri: 'https://komolei.cn/github'
     }
-  }
-  console.log('init', init)
-  // let request=new Request(url,init);  
-  // console.log("request is what",request)
+    let url = 'https://github.com/login/oauth/access_token'
+    let init = {
+      method: 'POST',
+      // mode: 'cors',
+      body: JSON.stringify(formData),
+      headers: {
+        'Content-type': 'application/json'
+      }
+    }
+    console.log('init', init)
+    // let request=new Request(url,init);  
+    // console.log("request is what",request)
 
-  let formData1 = 'https://github.com/login/oauth/access_token?client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code + 'redirect_uri=http://127.0.0.1:4000'
-  // fetch(url, init)
+    let formData1 = 'https://github.com/login/oauth/access_token?client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code + 'redirect_uri=https://komolei.cn'
+    // fetch(url, init)
 
-  console.log('formData:', formData)
+    console.log('formData:', formData)
 
-  // fetch(formData1, {method: 'get',headers: {
-  //     'Content-type': 'application/json'
-  // }})
+    // fetch(formData1, {method: 'get',headers: {
+    //     'Content-type': 'application/json'
+    // }})
 
-  fetch(url, init).then(response => {
-    console.log('first response is:', typeof response, 'sdfadfga', '\n')
-    //  console.log('json parse', JSON.parse(response))
-    res.send(response);return response}).then(data => {
-    console.log('request success', data)
-    let info = data
-    console.log('dfaf:', info, '\n', typeof info)
-    let url2 = 'https://api.github.com/user?access_token=' + info.access_token
-    fetch(url2, {method: 'get'}).then(response => {
-      console.log('second response is:', response); return response.json()}).then(data => {
-      let userInfo = data.query
-      res.send(userInfo)
-    })
-  }).catch(err => console.log('err: ', err))
+    fetch(url, init).then(response => {
+      console.log('first response is:', typeof response, 'sdfadfga', '\n')
+      //  console.log('json parse', JSON.parse(response))
+      res.send(response);return response}).then(data => {
+      console.log('request success', data)
+      let info = data
+      console.log('dfaf:', info, '\n', typeof info)
+      let url2 = 'https://api.github.com/user?access_token=' + info.access_token
+      fetch(url2, {method: 'get'}).then(response => {
+        console.log('second response is:', response); return response.json()}).then(data => {
+        let userInfo = data.query
+        res.send(userInfo)
+      })
+    }).catch(err => console.log('err: ', err))
+  })
 })
 
 // use mid
