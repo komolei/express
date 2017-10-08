@@ -112,7 +112,11 @@ module.exports = {
         // new webpack.HotModuleReplacementPlugin({
         //     // Options...
         // }),
-        new extractTextWebpackPlugin("[name].css"),
+        // new webpack.optimize.CommonsChunkPlugin({
+        //     name: 'vendor',
+        //     filename: 'main.js',
+        //   }),
+        new extractTextWebpackPlugin({ filename: "[name].css" }),
         new UgLifyJsPlugin({
             test: /\.js($&#124;\?)/i,
             include: /\/dist/,

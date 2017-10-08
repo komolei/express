@@ -7,13 +7,13 @@
 //     let loadAniamte = document.getElementsByClassName('spinner')[0];
 //     loadAniamte.classList.add('hide');
 // }
-// //signIn
-// let signInDialog = document.getElementById('signInDialog');
-// signInDialog.addEventListener('click', () => {
-//     document.getElementsByClassName('signInDialog')[0].classList.toggle('changeDialog');
-// })
-// let signInBtn = document.getElementById('signInBtn');
-// console.log("signInBtn:", signInBtn);
+//signIn
+let signInDialog = document.getElementById('signInDialog');
+signInDialog.addEventListener('click', () => {
+    document.getElementsByClassName('signInDialog')[0].classList.toggle('changeDialog');
+})
+let signInBtn = document.getElementById('signInBtn');
+console.log("signInBtn:", signInBtn);
 let isLockUp = false;
 signInBtn.addEventListener('click', () => {
     // loadAniamte();
@@ -420,6 +420,7 @@ imgLoad();
 
 // --------------------------------------------
 // don't forget this api  
+
 window.onload = () => {
     let firstLoad = document.getElementsByClassName('firstLoad')[0];
     let wrappedBox = document.getElementsByClassName('wrappedBox')[0];
@@ -430,6 +431,42 @@ window.onload = () => {
     // indexLoad.style.display = 'none';
     wrappedBox.classList.remove('hide');
     firstLoad.classList.add('hide');
+    let github = document.getElementById('github');
+    console.log("github:", github);
+    github.addEventListener('click', () => {
+        console.log("first");
+        // let url = '/getGithub';
+        // let init = {
+        //     method: 'get',
+        // };
+        // fetch(url, init).then(response => response.json()).then(data => {
+        //     console.log("github:", data);
+        // });
+        let xhr = new XMLHttpRequest(),
+            method = 'get',
+            url = '/getGithub';
+        // if (isLockUp) return;
+        // isLockUp = true;
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                console.log("gg", xhr.responseText);
+                let text = xhr.responseText;
+                document.getElementById('loginDiv').innerHTML = "<p>welcome " + JSON.parse(text).username + " back🐵</p>"
+                // return isLockUp = false;
+            }
+            else {
+                //document.getElementById('loginDiv').innerHTML = "<p>sorry can't find user</p>"
+                alert('sorry! Can"t find user');
+                // return isLockUp = false;
+            }
+        }
+        // xhr.open(method, url, true);
+        // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhr.send('username=' + username + '&password=' + password);
+        xhr.open(method, url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.send();
+    })
 }
 
 // lazy load function
@@ -538,13 +575,18 @@ blogLoadMore.addEventListener('click', () => {
 
 
 // add github Oauth service
-let github=document.querySelector('#github');
-github.addEventListener('click',()=>{
-    let url= ' https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1';
-    let init={
-        method:'get',
-    };
-    fetch(url,init).then(response=>response.json()).then(data=>{
-        console.log("github:",data);
-    })
-})
+// let github=document.querySelector('github');
+// let github=()=>{
+//     let github=document.getElementById('github');
+//     console.log("github:",github);
+//     github.addEventListener('click',()=>{
+//         console.log("first");
+//         let url= ' http://localhost:4000/getGithub';
+//         let init={
+//             method:'get',
+//         };
+//         fetch(url,init).then(response=>response.json()).then(data=>{
+//             console.log("github:",data);
+//         })
+//     })
+// }

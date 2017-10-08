@@ -125,8 +125,8 @@ app.post('/signUp', (req, res) => {
       console.log('save success', doc)
     })
   })
-// close mongoDB
-// db.close()
+  // close mongoDB
+  // db.close()
 })
 
 // to bind model 
@@ -155,18 +155,18 @@ app.post('/signIn', (req, res) => {
       // res.send("login success "+userInfo.username)
       res.json({ username: userInfo.username })
     })
-  // query password
-  // user.find({ password: userInfo.password }, (err, docs) => {
-  //     if (err) return console.error(err)
-  //     console.log(doc)
-  // })
-  // to query, use where
-  // let userInfo = req.body
-  // console.log(userInfo, "req.body")
-  // user.where('username').select(userInfo.username).find((err, docs) => {
-  //     if (err) console.error(err, "you are failed")
-  //     console.log("this docs is:", docs)
-  // })
+    // query password
+    // user.find({ password: userInfo.password }, (err, docs) => {
+    //     if (err) return console.error(err)
+    //     console.log(doc)
+    // })
+    // to query, use where
+    // let userInfo = req.body
+    // console.log(userInfo, "req.body")
+    // user.where('username').select(userInfo.username).find((err, docs) => {
+    //     if (err) console.error(err, "you are failed")
+    //     console.log("this docs is:", docs)
+    // })
   })
   // db.close()
 
@@ -191,70 +191,259 @@ app.get('/blog', (req, res) => {
     let blog = require('./Blog.js')
     let blogInfo = req.query
     console.log('blogInfo1', req.query)
-  // blog.find
+    // blog.find
   })
 })
 // oauth
-// let formData = 'client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code
-app.get('/github', (req, res) => {
-  let firstUrl = 'https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1&state=1314&redirect_uri=https://komolei.cn/github'
-  fetch(firstUrl, {method: 'get'})
-    .then(response => {
-      typeof response;console.log('response:', response); return response;})
-    .then(data => {
-      console.log('first request:', data, '\n');return data})
-    .then(data => {
-      console.log('callback success')})
-    .then(data => {
-      console.log('first request:', data, '\n');return data})
-    .then(data => {
-      console.log('callback success')
-      // let data = req.query
-      console.log("github data'code:", data.code)
-      let formData = {
-        client_id: '517ea4027af95e1823b1',
-        client_secret: 'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d',
-        code: data.code,
-        redirect_uri: 'https://komolei.cn/github'
-      }
-      let url = 'https://github.com/login/oauth/access_token'
-      let init = {
-        method: 'POST',
-        // mode: 'cors',
-        body: JSON.stringify(formData),
-        headers: {
-          'Content-type': 'application/json'
-        }
-      }
-      console.log('init', init)
-      // let request=new Request(url,init);  
-      // console.log("request is what",request)
 
-      let formData1 = 'https://github.com/login/oauth/access_token?client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code + 'redirect_uri=https://komolei.cn'
-      // fetch(url, init)
+app.get('/getGithub', (req, res) => {
+  let firstUrl = 'https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1&state=1314&scope=user'
+  // fetch(firstUrl, { mothed: 'get' })
+  //   // .then(response => response.json())
+  //   .then(data => {
 
-      console.log('formData:', formData)
-
-      // fetch(formData1, {method: 'get',headers: {
-      //     'Content-type': 'application/json'
-      // }})
-
-      fetch(url, init).then(response => {
-        console.log('first response is:', typeof response, 'sdfadfga', '\n')
-        //  console.log('json parse', JSON.parse(response))
-        res.send(response);return response}).then(data => {
-        console.log('request success', data)
-        let info = data
-        console.log('dfaf:', info, '\n', typeof info)
-        let url2 = 'https://api.github.com/user?access_token=' + info.access_token
-        fetch(url2, {method: 'get'}).then(response => {
-          console.log('second response is:', response); return response.json()}).then(data => {
-          let userInfo = data.query
-          res.send(userInfo)
-        })
-      }).catch(err => console.log('err: ', err))
-    })
+  //     let code = data.code;
+  //     let url = 'http://localhost:4000/path/github/callback';
+  //     res.redirect(url);
+  //     // res.redirect('http://localhost:4000/path/github/callback')
+  //   });
+  console.log("fadlfajdf;aflqafj");
+  res.redirect(firstUrl);
 })
+// // let formData = 'client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code
+
+let request = require('request');
+
+
+app.get('/path/github/callback', (req, res) => {
+
+  let url2 = 'https://github.com/login/oauth/access_token';
+  let data = req.query;
+
+  let option = {
+    url: url2,
+    headers: {
+      // 'User-Agent': 'komolei',
+      'content-type': 'application/json',
+    },
+    form: {
+      client_id: '517ea4027af95e1823b1',
+      client_secret: 'c0f478694307952421267a739e4d9dafa61a4521',
+      code: data.code,
+      state: '1314',
+      redirect_url: 'http://localhost:4000',
+    },
+
+  };
+  let querystring = require('querystring');
+  request.post(option, function (error, response, body) {
+    if (error) {
+      return console.log("err is:", error);
+    }
+    console.log(response, '\n');
+    if (!error && response.statusCode == 200) {
+      console.log(response.body); // 输出请求到的body
+      // res.send(response.body);
+      // let data = response.body.query;
+      let data = querystring.parse(response.body);
+      console.log("data:", data);
+      let url22 = 'https://api.github.com/user?access_token=' + data.access_token;
+      // fetch(url2, { method: 'get' }).then(response => {
+      //   console.log('second response is:', response);
+      //   // return response.json()
+      //   return response.json();
+      // }).then(data => {
+      //   let userInfo = data;
+      //   res.send("xixi", '\n', userInfo);
+      // }).catch(err => console.log('err: ', err))
+      let userInfo = request.get({
+        url: url22, headers: {
+          'Connection': 'keep-alive',
+          'Content-Type': 'application/json',
+          'User-Agent': 'blog',
+        }
+      }, function (error, response, body) {
+        if (error) {
+          return console.log("err2 is:", error);
+        }
+        console.log(response, '\n');
+        if (!error && response.statusCode == 200) {
+          console.log(response.body); // 输出请求到的body
+          // res.send(response.body);
+          // let data = response.body.query;
+          // let data = querystring.parse(response.body);
+          // console.log("user info:", data);
+          // res.json(response.body);
+          // res.redirect("/githubLogin");
+          // document.getElementById('signInDialog').innerHTML = "<a href='javascript:void(0)'><span class='glyphicon glyphicon-user'></span>" + response.body.login + "</a><span data-toggle='modal' data-target='#signOut'>Sign Out?</span>"
+
+          // res.send({ username: JSON.parse(response.body).login });
+          let index = '/?username=' + JSON.parse(response.body).login;
+          // { username: JSON.parse(response.body).login }
+          // res.send({ username: JSON.parse(response.body).login });
+          // res.redirect(index);
+          // return response.body;
+          res.redirect('/');
+        }
+      });
+
+    }
+  });
+  app.get('/githubUser', (req, res) => {
+    res.send(res.query);
+  })
+  // mmp 是后台发请求去认证的，而不是前台，前台可以通过fetch，但是后台却不可以，应该要用到node的http模块吧。这不是很清楚，我是选择使用了，request去发。😔，卡了三天，就这样解决了
+  //   let xmlHttp = new XMLHttpRequest();
+  //   let xml = "client_id=517ea4027af95e1823b1&client_secret=c0f478694307952421267a739e4d9dafa61a4521&code=" + data.code + "&state=" + data.state;
+
+  //   xmlHttp.open("POST", url, true);
+  //   xmlHttp.onreadystatechange = function () {
+  //     //当 readyState 等于 4 且状态为 200 时，表示响应已就绪
+  //     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+  //       requstdata = xmlhttp.responseText;
+  //       var requstJson = JSON.parse(requstdata);
+  //       // for (var i = 0; i < requstJson.length; i++) {
+  //       //   html += "<p>" + requstJson[i].name + ";" + requstJson[i].pwd + "</p>"
+  //       // }
+  //       // document.getElementById("div1").innerHTML = html;
+  //       console.log("requstJson:", requstJson);
+  //     }
+  //   }
+  //   xmlHttp.setRequestHeader("Content-Type",
+  //     "application/json;");
+  //   xmlHttp.send(xml);
+  // })
+  // app.get('/path/github/callback', (req, res) => {
+  //   console.log("req:", req);
+  //   // let firstUrl = 'https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1&state=1314&redirect_uri=https://komolei.cn/github'
+  //   let data = req.query;
+  //   console.log("data is:", data);
+  //   console.log("\n");
+  //   console.log("\n");
+  //   console.log("\n");
+  //   // let formData = {
+  //   //   client_id: '=517ea4027af95e1823b1&',
+  //   //   client_secret: '=c0f478694307952421267a739e4d9dafa61a4521&',
+  //   //   code: '=' + data.code + '&',
+  //   //   state: '=1314',
+  //   //   // redirect_uri: 'https://komolei.cn/github'
+  //   // }
+  //   // console.log("json parse:", JSON.stringify(formData), "\n", '\n', '\n');
+  //   let url = 'https://github.com/login/oauth/access_token'
+  //   let url2 = "client_id=517ea4027af95e1823b1&client_secret=c0f478694307952421267a739e4d9dafa61a4521&code=" + data.code + "&state=" + data.state;
+  //   console.log("url2:", url2, '\n');
+  //   let init = {
+  //     method: 'POST',
+  //     // mode: 'no-cors',
+  //     headers: {
+  //       // 'Content-Type': 'application/vnd.github.v3+json',
+  //       'Content-Type': 'application/json',
+  //       'charset': 'utf-8',
+  //       'User-Agent': 'komolei',
+  //     },
+  //     // body: "client_id=517ea4027af95e1823b1&client_secret=c0f478694307952421267a739e4d9dafa61a4521&code=" + data.code + "&state=" + data.state,
+  //     body: url2,
+  //     // body: JSON.stringify(formData),
+  //     // body: formData,
+  //   }
+
+  //   // let FormData = require('form-data');
+  //   // let form = new FormData();
+  //   // form.append('client_id', '517ea4027af95e1823b1');
+  //   // form.append('client-secret', 'c0f478694307952421267a739e4d9dafa61a4521');
+  //   // form.append('code', data.code);
+  //   // form.append('state', 1314);
+  //   // console.log("form:",form);
+  //   // const querystring = require('querystring');
+  //   // fetch(url, init).then(response => {
+  //   //   console.log('first response is:', typeof response, 'sdfadfga', '\n', '\n', '\n')
+  //   //   //  console.log('json parse', JSON.parse(response))
+  //   //   // res.send(response);
+  //   //   return response
+  //   // })
+  //     // fetch(url, {
+  //     //   method: 'POST', body: form,
+  //     // })
+  //     // .then(data => {
+  //     //   console.log('request success,\n', data)
+  //     //   let info = data.json();
+  //     //   console.log('dfaf:', '\n', typeof info)
+  //     //   let url2 = 'https://api.github.com/user?access_token=' + info.access_token
+  //     //   fetch(url2, { method: 'get' }).then(response => {
+  //     //     // console.log('second response is:', response);
+  //     //     // return response.json()
+  //     //     return response;
+  //     //   }).then(data => {
+  //     //     let userInfo = data;
+  //     //     res.send("xixi", '\n', userInfo)
+  //     //   })
+  //     // }).catch(err => console.log('err: ', err))
+
+
+  //   // fetch(firstUrl, { method: 'get' })
+  //   // .then(response => {
+  //   //   typeof response; console.log('response:', response); return response;
+  //   // })
+  //   // .then(data => {
+  //   //   console.log('first request:', data, '\n'); return data
+  //   // })
+  //   // .then(data => {
+  //   //   console.log('callback success')
+  //   // })
+  //   // .then(data => {
+  //   //   console.log('first request:', data, '\n'); return data
+  //   // })
+  //   // .then(data => {
+  //   //   console.log('callback success')
+  //   //   // let data = req.query
+  //   //   console.log("github data'code:", data.code)
+  //   //   let formData = {
+  //   //     client_id: '517ea4027af95e1823b1',
+  //   //     client_secret: 'fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d',
+  //   //     code: data.code,
+  //   //     redirect_uri: 'https://komolei.cn/github'
+  //   //   }
+  //   //   let url = 'https://github.com/login/oauth/access_token'
+  //   //   let init = {
+  //   //     method: 'POST',
+  //   //     // mode: 'cors',
+  //   //     body: JSON.stringify(formData),
+  //   //     headers: {
+  //   //       'Content-type': 'application/json'
+  //   //     }
+  //   //   }
+  //   //   console.log('init', init)
+  //   //   // let request=new Request(url,init);  
+  //   //   // console.log("request is what",request)
+
+  //   //   let formData1 = 'https://github.com/login/oauth/access_token?client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code + 'redirect_uri=https://komolei.cn'
+  //   //   // fetch(url, init)
+
+  //   //   console.log('formData:', formData)
+
+  //   //   // fetch(formData1, {method: 'get',headers: {
+  //   //   //     'Content-type': 'application/json'
+  //   //   // }})
+
+  //   //   fetch(url, init).then(response => {
+  //   //     console.log('first response is:', typeof response, 'sdfadfga', '\n')
+  //   //     //  console.log('json parse', JSON.parse(response))
+  //   //     res.send(response); return response
+  //   //   }).then(data => {
+  //   //     console.log('request success', data)
+  //   //     let info = data
+  //   //     console.log('dfaf:', info, '\n', typeof info)
+  //   //     let url2 = 'https://api.github.com/user?access_token=' + info.access_token
+  //   //     fetch(url2, { method: 'get' }).then(response => {
+  //   //       console.log('second response is:', response); return response.json()
+  //   //     }).then(data => {
+  //   //       let userInfo = data.query
+  //   //       res.send(userInfo)
+  //   //     })
+  //   //   }).catch(err => console.log('err: ', err))
+  //   // })
+});
+
 
 // use mid
 router.use('/blogEdit', (req, res) => {
@@ -267,10 +456,11 @@ router.use('/blogEdit', (req, res) => {
 })
 // app.use('/', router)
 app.get('/', function (req, res) {
+  let data = req.query;
   if (req.protocol === 'https') {
     res.status(200).send('This is https visit!')
-  }else {
-    res.status(200).send('This is http visit!')
+  } else {
+    res.status(200).send(data);
   }
 })
 
@@ -294,9 +484,9 @@ app.get('/', function (req, res) {
 // server.listen(8000,()=>{
 //     console.log("success")
 // })
-let http = require('http')
+let http = require('http');
 // let https = require('https')
-http.createServer(app).listen(4000)
+http.createServer(app).listen(4000);
 // https.createServer(sslOptions, app).listen(8443)
 // let secureServer=https.createServer(sslOptions,app)
 // app.use(forceSSL)

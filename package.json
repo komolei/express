@@ -1,19 +1,23 @@
 {
-  "name": "expressByMyself",
+  "name": "expressbymyself",
   "version": "1.0.0",
-  "description": "",
+  "description": "- install [node](https://github.com/nodejs/node) \r - learn [express](https://github.com/expressjs/express)\r -",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "komolei",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
-    "mongoose": "^4.11.10"
+    "form-data": "^2.3.1",
+    "mongoose": "^4.11.10",
+    "node-fetch": "^1.7.3",
+    "request": "^2.83.0",
+    "webpack": "^3.6.0"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
@@ -35,5 +39,13 @@
     "style-loader": "^0.18.2",
     "uglifyjs-webpack-plugin": "^0.4.6",
     "webpack-dev-server": "^2.6.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/komolei/express.git"
+  },
+  "bugs": {
+    "url": "https://github.com/komolei/express/issues"
+  },
+  "homepage": "https://github.com/komolei/express#readme"
 }
