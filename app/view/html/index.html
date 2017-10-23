@@ -46,11 +46,11 @@
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
             aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
           <a class="navbar-brand" href="#">
             <!-- <img class="" src="/images/logo.png" alt="logo icon" width="200px"> -->
             <span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>
@@ -60,10 +60,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">index <span class="sr-only">(current)</span></a></li>
-            <li><a href="/html/blog.html">Blog</a></li>
-            <!-- <li id='github'><a href="/getGithub">Github</a></li> -->
-            <li id='github'><span>Github</span></li>
+            <li class="active">
+              <a href="/">index
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li>
+              <a href="/html/blog.html">Blog</a>
+            </li>
+            <li id='wwgithub'><a href="/getGithub">Github</a></li>
+            <!-- <li id='github'>
+              <span>Github</span>
+            </li> -->
             <!-- https://github.com/login/oauth/authorize?client_id=517ea4027af95e1823b1&state=1314&redirect_uri=http://127.0.0.1:4000/github -->
           </ul>
           <form class="navbar-form navbar-left">
@@ -73,19 +81,31 @@
             <button type="submit" class="btn btn-default">Submit</button>
           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li id="signInDialog" data-toggle="modal" data-target="#signIn"><a href="JavaScript:void(0)">SignIn</a></li>
+            <li id="signInDialog" data-toggle="modal" data-target="#signIn">
+              <a href="JavaScript:void(0)">SignIn</a>
+            </li>
             <!-- <li class="dropdown disabled"> -->
             <li class="dropdown ">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">More
+                <span class="caret"></span>
+              </a>
               <ul class="dropdown-menu">
-                <li><a href="/html/blog.html">Blog</a></li>
-                <li><a href="/html/music.html">Music player</a></li>
-                <li><a href="/html/aboutme.html">About Me</a></li>
-                <li><a href="/html/blogEdit.html">BlogEdit</a></li>
+                <li>
+                  <a href="/html/blog.html">Blog</a>
+                </li>
+                <li>
+                  <a href="/html/music.html">Music player</a>
+                </li>
+                <li>
+                  <a href="/html/aboutme.html">About Me</a>
+                </li>
+                <li>
+                  <a href="/html/blogEdit.html">BlogEdit</a>
+                </li>
                 <li role="separator" class="divider"></li>
                 <li>
                   <a href="#">
-                    <span  class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
+                    <span class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
                   </a>
                 </li>
 
@@ -131,7 +151,9 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
             <h4 class="modal-title text-center" id="myModalLabel">Please sign in</h4>
           </div>
           <div class="modal-body">
@@ -145,7 +167,7 @@
                 <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
                 <div class="checkbox">
                   <label>
-                      <input type="checkbox" value="remember-me" /> Remember me
+                    <input type="checkbox" value="remember-me" /> Remember me
                   </label>
                 </div>
                 <span id="changeSignUp" class="text-primary" data-toggle="modal" data-target="#signUp">Sign Up</span>
@@ -166,7 +188,9 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
             <h4 class="modal-title text-center" id="myModalLabel">Please Sign Up</h4>
           </div>
           <div class="modal-body">
@@ -197,7 +221,9 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
 
           </div>
           <div class="modal-body">
@@ -257,13 +283,13 @@
 
       <!-- Controls -->
       <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
       <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
     </div>
 
 
@@ -458,18 +484,28 @@
     <ul class="pagination">
       <li>
         <a href="#" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-                </a>
+          <span aria-hidden="true">&laquo;</span>
+        </a>
       </li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">4</a></li>
-      <li><a href="#">5</a></li>
+      <li>
+        <a href="#">1</a>
+      </li>
+      <li>
+        <a href="#">2</a>
+      </li>
+      <li>
+        <a href="#">3</a>
+      </li>
+      <li>
+        <a href="#">4</a>
+      </li>
+      <li>
+        <a href="#">5</a>
+      </li>
       <li>
         <a href="#" aria-label="Next">
-                  <span aria-hidden="true">&raquo;</span>
-                </a>
+          <span aria-hidden="true">&raquo;</span>
+        </a>
       </li>
     </ul>
   </nav>
@@ -477,7 +513,8 @@
 
   <div class="container">
     <div class="row text-center">
-      <span>2017 © komolei</span> <span> All Rights Reserved </span>
+      <span>2017 © komolei</span>
+      <span> All Rights Reserved </span>
     </div>
   </div>
 
@@ -569,7 +606,11 @@
       </div>
     </div>
   </div> -->
-
+  <!-- <div class="container">
+    <button class="btn btn-sm btn-success">
+      click
+    </button>
+  </div> -->
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
@@ -593,6 +634,23 @@
     //     console.log("github:", data);
     //   })
     // })
+    // $('.btn-success').on('click', function () {
+    //   $.ajax({
+    //     url: '/getA',
+    //     dataType: 'json',
+    //     statusCode: {
+    //       200: function (data) {
+    //         alert("success");
+    //         data.forEach(function (index, el) {
+    //           console.log("el:",el,"index:",index);
+    //           let url = "<li><a href=" + index.http + "><span>" + index.name + "</span></a></li>"
+    //           $('body').append(url);
+    //         }, this);
+    //       }
+    //     }
+    //   })
+    // })
+
   </script>
 </body>
 

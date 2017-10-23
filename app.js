@@ -210,12 +210,58 @@ app.get('/getGithub', (req, res) => {
   console.log("fadlfajdf;aflqafj");
   res.redirect(firstUrl);
 })
+
+// test a //the result is good
+app.get('/getA', (req, res) => {
+  let body = [{
+    name: 'clc',
+    age: '24',
+    sex: 'male',
+    http: 'http://www.baidu.com',
+  }, {
+    name: 'clc',
+    age: '24',
+    sex: 'male',
+    http: 'http://www.baidu.com',
+  }, {
+    name: 'clc',
+    age: '24',
+    sex: 'male',
+    http: 'http://www.baidu.com',
+  }, {
+    name: 'clc',
+    age: '24',
+    sex: 'male',
+    http: 'http://www.baidu.com',
+  }, {
+    name: 'clc',
+    age: '24',
+    sex: 'male',
+    http: 'http://www.baidu.com',
+  }]
+  res.json(body);
+})
+
 // // let formData = 'client_id=517ea4027af95e1823b1&client_secret=fc3afd9cf734640f4617d9fde374a1dbe3ebbc6d&code=' + data.code
 
 let request = require('request');
 
+// 10.1 add session 
+// let session = require('express-session');
+// app.use(session({
+//   secret: 'keyboard cat',
+//   cookie: ('name', 'value', {
+//     path: '/', httpOnly: true, secure: false, maxAge: 50000
+//   }),
+//   resave: true,
+//   saveUninitialized: false,
+// }))
 
 app.get('/path/github/callback', (req, res) => {
+
+  // add session
+  let sess = req.session;
+
 
   let url2 = 'https://github.com/login/oauth/access_token';
   let data = req.query;
@@ -280,10 +326,13 @@ app.get('/path/github/callback', (req, res) => {
           // res.send({ username: JSON.parse(response.body).login });
           let index = '/?username=' + JSON.parse(response.body).login;
           // { username: JSON.parse(response.body).login }
-          // res.send({ username: JSON.parse(response.body).login });
+          // res.json({ username: JSON.parse(response.body).login });
           // res.redirect(index);
           // return response.body;
+          sess.name = JSON.parse(response.body).login;
           res.redirect('/');
+          // res.json()
+
         }
       });
 
@@ -463,6 +512,17 @@ app.get('/', function (req, res) {
     res.status(200).send(data);
   }
 })
+
+// use nodejs reptile 
+
+// var reptile = require('./reptile.js');
+//  app.use('/reptile', function(req,res){
+//   console.log("fadf");
+//   res.send({"name":"reptile"})
+//  });
+
+let reptile=require('./app/view/js/reptile.js');
+app.get('/reptile',reptile);
 
 // let server = app.listen(3000, () => {
 //     let host = server.address().address
