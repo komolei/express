@@ -26,24 +26,32 @@ router.get('/reptile', (req, res) => {
 		let ob = {};
 		let arr = [];
 		async function waitData(urls) {
-			for(url of urls){
-
-			}
-			console.log("url:", url, "\n");
-				
 			try {
-				let value = await getData(url);
-				// let value1= await getData(url);
-				// let value2= await getData(url);
-				// let value3= await getData(url);
-				// let value4= await getData(url);
-				console.log("value:", value);
-				arr.push(value);
-				return arr;
+				for (const url of urls) {
+					let value = await getData(url)				
+					arr.push(value);
+					console.log("arr is that:", arr);
+				}
+			} catch (error) {
+				console.log("error is:", error, "in the async function");
 			}
-			catch (err) {
-				console.log("err is:", err);
-			}
+
+			// try {
+			// 	let value = await getData(url);
+			// 	// let value1= await getData(url);
+			// 	// let value2= await getData(url);
+			// 	// let value3= await getData(url);
+			// 	// let value4= await getData(url);
+			// 	console.log("value:", value);
+			// 	arr.push(value);
+			// 	return arr;
+			// }
+			// catch (err) {
+			// 	console.log("err is:", err);
+			// }
+			// res.send(arr.toString());
+			res.json(arr);
+
 		}
 		let getData = (url) => {
 			let option = {
@@ -51,30 +59,37 @@ router.get('/reptile', (req, res) => {
 				transform: $ => cheerio.load($),
 			}
 			let rpPromise = rp(option).then($ => {
-				let qtySubTxt = $('.w2b-sgl').text();
-				console.log("text:", qtySubTxt);
-				return qtySubTxt;
+				ob={};
+				let qtySubTxt1 = $('.w2b-sgl').text();
+				let qtySubTxt = $('.vi-qtyS').text();
+				let title=$('#itemTitle').text();
+				ob.title=title;
+				ob.sold=qtySubTxt;
+				console.log("text:", qtySubTxt, "\n");
+				return ob;
+				// return ob;
 			})
 			return rpPromise;
 		}
-		aLinks.map((i, el) => {
-			console.log("el is:", el, "i is", i);
-			// getData(i);
-			waitData(i);
-			// let option = {
-			// 	uri: i,
-			// 	transform: $ => cheerio.load($),
-			// }
-			// let rpData = () => rp(option).then($ => {
-			// 	let qtySubTxt = $('.w2b-sgl').text();
-			// 	console.log("text:", qtySubTxt);
-			// 	ob.data = qtySubTxt;
-			// 	// arr.push(ob);
-			// 	console.log("arr is:", arr);
-			// 	// return JSON.stringify(arr);
-			// })
-		})
-	
+		waitData(aLinks);
+		// aLinks.map((i, el) => {
+		// 	console.log("el is:", el, "i is", i);
+		// 	// getData(i);
+		// 	waitData(i);
+		// 	// let option = {
+		// 	// 	uri: i,
+		// 	// 	transform: $ => cheerio.load($),
+		// 	// }
+		// 	// let rpData = () => rp(option).then($ => {
+		// 	// 	let qtySubTxt = $('.w2b-sgl').text();
+		// 	// 	console.log("text:", qtySubTxt);
+		// 	// 	ob.data = qtySubTxt;
+		// 	// 	// arr.push(ob);
+		// 	// 	console.log("arr is:", arr);
+		// 	// 	// return JSON.stringify(arr);
+		// 	// })
+		// })
+
 	})
 
 
