@@ -25,22 +25,56 @@ router.get('/reptile', (req, res) => {
 		console.log("aLinks is:", aLinks instanceof Array, aLinks, "\n");
 		let ob = {};
 		let arr = [];
-		aLinks.map((i, el) => {
-			console.log("el is:", el, "i is", i);
+		async function waitData(urls) {
+			for(url of urls){
+
+			}
+			console.log("url:", url, "\n");
+				
+			try {
+				let value = await getData(url);
+				// let value1= await getData(url);
+				// let value2= await getData(url);
+				// let value3= await getData(url);
+				// let value4= await getData(url);
+				console.log("value:", value);
+				arr.push(value);
+				return arr;
+			}
+			catch (err) {
+				console.log("err is:", err);
+			}
+		}
+		let getData = (url) => {
 			let option = {
-				uri: i,
+				uri: url,
 				transform: $ => cheerio.load($),
 			}
-			let rpData = () => rp(option).then($ => {
+			let rpPromise = rp(option).then($ => {
 				let qtySubTxt = $('.w2b-sgl').text();
 				console.log("text:", qtySubTxt);
-				ob.data = qtySubTxt;
-				// arr.push(ob);
-				console.log("arr is:", arr);
-				// return JSON.stringify(arr);
-
+				return qtySubTxt;
 			})
+			return rpPromise;
+		}
+		aLinks.map((i, el) => {
+			console.log("el is:", el, "i is", i);
+			// getData(i);
+			waitData(i);
+			// let option = {
+			// 	uri: i,
+			// 	transform: $ => cheerio.load($),
+			// }
+			// let rpData = () => rp(option).then($ => {
+			// 	let qtySubTxt = $('.w2b-sgl').text();
+			// 	console.log("text:", qtySubTxt);
+			// 	ob.data = qtySubTxt;
+			// 	// arr.push(ob);
+			// 	console.log("arr is:", arr);
+			// 	// return JSON.stringify(arr);
+			// })
 		})
+	
 	})
 
 
