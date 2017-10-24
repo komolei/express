@@ -5,6 +5,10 @@ let request = require('request');
 let cheerio = require('cheerio');
 /* GET users listing. */
 let rp = require('request-promise');
+
+// Use node.fs module to save crawl data,the format is json
+const fs = require('fs');
+
 router.get('/reptile', (req, res) => {
 	let param = req.query || req.params;
 	let url = 'https://www.ebay.com.au/usr/mars_performance?_trksid=p2047675.l2559';
@@ -28,7 +32,7 @@ router.get('/reptile', (req, res) => {
 		async function waitData(urls) {
 			try {
 				for (const url of urls) {
-					let value = await getData(url)				
+					let value = await getData(url)
 					arr.push(value);
 					console.log("arr is that:", arr);
 				}
@@ -51,6 +55,7 @@ router.get('/reptile', (req, res) => {
 			// }
 			// res.send(arr.toString());
 			res.json(arr);
+			fs.writeFile(__dirname + '/data/data.json', JSON.stringify(arr), (err) => { if (err) throw err; console.log("write success"); })
 
 		}
 		let getData = (url) => {
@@ -59,12 +64,12 @@ router.get('/reptile', (req, res) => {
 				transform: $ => cheerio.load($),
 			}
 			let rpPromise = rp(option).then($ => {
-				ob={};
+				ob = {};
 				let qtySubTxt1 = $('.w2b-sgl').text();
 				let qtySubTxt = $('.vi-qtyS').text();
-				let title=$('#itemTitle').text();
-				ob.title=title;
-				ob.sold=qtySubTxt;
+				let title = $('#itemTitle').text();
+				ob.title = title;
+				ob.sold = qtySubTxt;
 				console.log("text:", qtySubTxt, "\n");
 				return ob;
 				// return ob;
