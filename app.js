@@ -503,6 +503,13 @@ router.use('/blogEdit', (req, res) => {
   console.log('what is req.quert:', req.query)
   res.json({ message: 'success' })
 })
+
+//getSoldBest interface
+
+let getSoldBest = require('./app/view/js/getSoldBest');
+app.use('/getSoldBest', getSoldBest);
+let getStoreData = require('./app/view/js/getStoreData');
+app.use('/getStoreData', getStoreData);
 // app.use('/', router)
 app.get('/', function (req, res) {
   let data = req.query;
@@ -521,8 +528,8 @@ app.get('/', function (req, res) {
 //   res.send({"name":"reptile"})
 //  });
 
-let reptile=require('./app/view/js/reptile.js');
-app.get('/reptile',reptile);
+let reptile = require('./app/view/js/reptile.js');
+app.get('/reptile', reptile);
 
 // let server = app.listen(3000, () => {
 //     let host = server.address().address
