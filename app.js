@@ -553,7 +553,45 @@ app.get('/reptile', reptile);
 // })
 let http = require('http');
 // let https = require('https')
-http.createServer(app).listen(4000);
+// http.createServer(app).listen(4000);
+let server = http.createServer(app);
+let io = require('socket.io')(server);
+io.on('connection', socket => {
+  socket.on('chat', (content) => {
+    if (/robert/.test(content)) {
+      robert(content, socket)
+    }
+    else {
+      // socket.broadcast.emit('chat', `${user} say: ${content}`) //广播，其他人都能听得见
+      io.sockets.emit('chat', `${content}`) //all peopel can hear
+    }
+    // robert(content, user, socket);
+  });
+});
+
+// add turing robert
+
+function robert(content, socket) {
+  let options = {
+    url: 'http://www.tuling123.com/openapi/api',
+    method: 'POSt',
+    json: true,
+    body: {
+      key: "9af90ef2169e43daac8b4f0f76a173e8",
+      info: content,
+      userid: 123,
+    }
+  };
+  request(options, function (error, response, body) {
+    if (error) {
+      return console.error('upload failed:', error);
+    }
+    console.log(body.text);
+    // socket.broadcast.emit('chat', `${body.text}`) //广播，其他人都能听得见
+    io.sockets.emit('chat', `${body.text}`);
+  })
+}
+server.listen(3000);
 // https.createServer(sslOptions, app).listen(8443)
 // let secureServer=https.createServer(sslOptions,app)
 // app.use(forceSSL)

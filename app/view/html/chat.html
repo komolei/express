@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <main>
+        <label for="komolei">komolei</label>
+        <input type="text" id="komolei">
+        <button>send</button>
+    </main>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    // let socket = io('http://localhost');
+    let socket = io();
+    socket.on('chat', function (msg) {
+        showMsg(msg);
+    })
+    document.querySelector('button').addEventListener('click', function () {
+        socket.emit('chat',document.querySelector('input').value);
+    })
+    function showMsg(msg) {
+        if (!("Notification" in window)) {
+            console.log("This browser does not support desktop notification");
+        }
+        else if (Notification.permission === "granted") {
+            var notification = new Notification(msg);
+        }
+        else if (Notification.permission !== 'denied' || Notification.permission === "default") {
+            Notification.requestPermission(function (permission) {
+                if (permission === "granted") {
+                    var notification = new Notification(msg);
+                }
+            });
+        }
+        let p = document.createElement('p');
+        p.innerText = msg;
+        document.body.appendChild(p);
+        console.log("msg:", msg);
+    }
+    socket.on('connect', function () { });
+    socket.on('event', function (data) { });
+    socket.on('disconnect', function () { });
+
+</script>
+
+</html>
